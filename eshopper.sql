@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Mei 2017 pada 08.25
+-- Generation Time: 02 Jun 2017 pada 05.43
 -- Versi Server: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -53,10 +53,19 @@ CREATE TABLE `barang` (
   `qty` int(11) NOT NULL,
   `harga_barang` varchar(25) NOT NULL,
   `discount` varchar(4) NOT NULL,
+  `spesifikasi` text NOT NULL,
   `suplier` varchar(20) NOT NULL,
   `alamat_suplier` text NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `kategori`, `qty`, `harga_barang`, `discount`, `spesifikasi`, `suplier`, `alamat_suplier`, `image`) VALUES
+(1, 'Grand Prime Golden Wacth', 'jam tangan', 100, '100', '50', 'bagus keren mantap', 'aryaagung', 'emboh', ''),
+(3, 'Grand Prime ARLOGI', 'jam tangan', 50, '200', '1', 'keren gila keren', 'aryaagung', 'jutak dung dung', '');
 
 -- --------------------------------------------------------
 
@@ -70,8 +79,16 @@ CREATE TABLE `pengiriman` (
   `kabupaten_kota` varchar(20) NOT NULL,
   `kecamatan` varchar(20) NOT NULL,
   `kodepos` int(7) NOT NULL,
-  `alamat_lengkap` text NOT NULL
+  `alamat_lengkap` text NOT NULL,
+  `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pengiriman`
+--
+
+INSERT INTO `pengiriman` (`id_transaksi`, `provinsi`, `kabupaten_kota`, `kecamatan`, `kodepos`, `alamat_lengkap`, `tanggal`) VALUES
+(4, 'Jawa Timur', 'Lumajang', 'Pasirian', 67832, 'Gang Sumarnoto No.131', '2017-05-31');
 
 -- --------------------------------------------------------
 
@@ -83,12 +100,19 @@ CREATE TABLE `transaksi` (
   `id_transaksi` int(9) NOT NULL,
   `nama_pelanggan` varchar(100) NOT NULL,
   `email_pelanggan` varchar(100) NOT NULL,
-  `no_hp` int(15) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
   `barang_beli` varchar(100) NOT NULL,
   `total_beli` varchar(200) NOT NULL,
   `qty_beli` int(100) NOT NULL,
   `no_rekening` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `nama_pelanggan`, `email_pelanggan`, `no_hp`, `barang_beli`, `total_beli`, `qty_beli`, `no_rekening`) VALUES
+(4, 'Gamma Luluh Lengingtyas Mawar Tania', 'gama@example.com', '089238100183', 'Grand Prime Golden Wacth', '100', 1, '1293008181080380');
 
 --
 -- Indexes for dumped tables
@@ -131,17 +155,17 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

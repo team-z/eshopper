@@ -1,63 +1,64 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Crud extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		->load->helper('url');
-		->load->model('Model File');
+		$this->load->helper('url');
+		$this->load->model('Model File');
 
 	}
 
 	// List all your items
 	public function index()
 	{
-       ['user']= ->model_name->fetch('Table_name')->result();
-       ->load->view('your_view_file',);
+       $data['user']= $this->model_name->fetch('Table_name')->result();
+       $this->load->view('your_view_file',$data);
 	}
 
 	// Add a new item
 	public function add()
 	{
-        = ->input->post('name');
-        = ->input->post('email');
-        = ->input->post('password');
-        = ->input->post('address');
+       $name = $this->input->post('name');
+       $email = $this->input->post('email');
+       $password = $this->input->post('password');
+       $address = $this->input->post('address');
 
-        = array(
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  );
+       $object = array(
+       	'your_attribute' => $name ,
+       	'your_attribute' => $email ,
+       	'your_attribute' => $password ,
+       	'your_attribute' => $address );
 
-       ->model_name->add('Table_name',);
+       $this->model_name->add('Table_name',$object);
        redirect('crud/index');
 	}
 
 	//Update one item
-	public function update()
+	public function update($id)
 	{
-	    = ->input->post('name');
-        = ->input->post('email');
-        = ->input->post('password');
-        = ->input->post('address');
-        = array('your_attribute' => );
-        = array(
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  ,
-       	'your_attribute' =>  );
-       ->model_name->update('Table_name',,);
+	   $name = $this->input->post('name');
+       $email = $this->input->post('email');
+       $password = $this->input->post('password');
+       $address = $this->input->post('address');
+       $where = array('your_attribute' => $id);
+       $object = array(
+       	'your_attribute' => $name ,
+       	'your_attribute' => $email ,
+       	'your_attribute' => $password ,
+       	'your_attribute' => $address );
+       $this->model_name->update('Table_name',$object,$where);
        redirect('crud/index');
 
 	}
 
 	//Delete one item
-	public function delete()
+	public function delete($id)
 	{
-		 = array('your_attribute' => );
-		->model_name->delete('Table_name',);
+		$where = array('your_attribute' => $id);
+		$this->model_name->delete('Table_name',$where);
 		redirect('crud/index');
 	}
 }

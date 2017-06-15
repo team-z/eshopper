@@ -26,14 +26,14 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="images/shop/product12.jpg" alt="" />
-										<h2><?php echo $key->harga_barang ; ?></h2>
+										<img src="<?php echo base_url('uploads/'.$key->image) ; ?>" class="img-circle" height="250" width="150">
+										<h2>Rp.<?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 										<p><?php echo $key->nama_barang ; ?></p>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2><?php echo $key->harga_barang ; ?></h2>
+											<h2>Rp.<?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 											<p><?php echo $key->nama_barang ; ?></p>
 											<?php
 							echo form_open('shopping/add');

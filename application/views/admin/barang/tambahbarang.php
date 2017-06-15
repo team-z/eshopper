@@ -13,6 +13,7 @@
 			<h1><center>Tambah Barang</center></h1>
 			<?php echo form_open_multipart('admin/tambah'); ?>
 				<div class="col-md-3">
+				<h2>Gambar Produk</h2>
 					<img id="preview" height="200" width="200" class="img-circle" alt="User Image"/>
 					<input accept="image/*" onchange="tampilkanPreview(this,'preview')" type="file" name="gambar">
 				</div>
@@ -30,13 +31,15 @@
 								<th>
 									<div class="form-group">
 										<label for="user">Kategori</label>
-										<input type="text" class="form-control" name="kategori" placeholder="kategori">
-									</div>
-								</th>
-								<th>
-									<div class="form-group">
-										<label for="user">Quanity</label>
-										<input type="text" class="form-control" name="qty" placeholder="unit">
+										<select class="form-control" name="kategori" placeholder="kategori">
+										<?php 
+										$link=mysqli_connect('localhost','root','','eshopper');
+										$query=mysqli_query($link,"SELECT * FROM kategori");
+										while ($row=mysqli_fetch_array($query)) {
+										?>
+										<option value="<?php echo $row['nama']; ?>"><?php echo $row['nama']; ?></option>
+										<?php } ?>
+										</select>
 									</div>
 								</th>
 							</tr>
@@ -51,6 +54,12 @@
 									<div class="form-group">
 										<label for="user">Discount</label>
 										<input type="text" class="form-control" name="discount" placeholder="%">
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label for="user">Quanity</label>
+										<input type="text" class="form-control" name="qty" placeholder="unit">
 									</div>
 								</th>
 							</tr>

@@ -21,6 +21,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/barang/tambahbarang');
 	}
 
+	public function tambahkategori()
+	{
+		$kategori=$this->input->post('kategori');
+		$object = array('nama' => $kategori);
+		$this->mod->tambahdata('kategori',$object);
+		redirect('admin/tambahbarang');
+	}
+
 	public function viewbarang()
 	{
 		$data['barang'] = $this->mod->tampil('barang')->result();

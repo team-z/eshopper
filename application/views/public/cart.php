@@ -28,8 +28,9 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="">Home</a></li>
 				  <li class="active">Shopping Cart</li>
+				  <li><a href="">Checkout</a></li>
 				</ol>
 			</div>
 			<?php  $cart_check = $this->cart->contents();
@@ -46,11 +47,10 @@
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
-							<td class="description"></td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
-							<td></td>
+							<td class="total">Action</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -73,20 +73,17 @@
                         ?>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="<?php echo base_url('images/cart/one.png'); ?>" alt=""></a>
-							</td>
-							<td class="cart_description">
 								<h4><?php echo $item['name']; ?></h4>
 							</td>
 							<td class="cart_price">
-								<p>$ <?php echo number_format($item['price'], 2); ?></p>
+								<p>Rp <?php echo number_format($item['price'],2,',','.'); ?></p>
 							</td>
 							<td class="cart_quantity">
 								<?php echo form_input('cart[' . $item['id'] . '][qty]', $item['qty'], 'maxlength="3" size="1" style="text-align: right"'); ?>
 							</td>
 							<?php $grand_total = $grand_total + $item['subtotal']; ?>
 							<td class="cart_total">
-								<p class="cart_total_price">$ <?php echo number_format($item['subtotal'], 2) ; ?></p>
+							<p class="cart_total_price">Rp. <?php echo number_format($item['subtotal'],2,',','.'); ?></p>
 							</td>
 							<td>
 								<?php echo anchor('shopping/remove/' . $item['rowid'], 'Hapus'); ?>
@@ -121,16 +118,11 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$<?php 
+							<li>Cart Sub Total <span>Rp <?php 
                         //Grand Total.
-                        echo number_format($grand_total, 2); ?></span></li>
-							<li>Eco Tax <span>$2</span></li>
+                        echo number_format($grand_total, 2,',','.'); ?></span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<?php
-							$a = 2;
-							$total = $grand_total+$a;
-							?>
-							<li>Total <span>$<?php echo number_format($total, 2); ?></span></li>
+							<li>Total <span>Rp <?php echo number_format($grand_total, 2,',','.'); ?></span></li>
 							<li style="background-color: white;padding: 0;">
 							<a class="btn btn-default" href="<?php echo base_url('index.php/shopping/billing_view'); ?>">Place Order</a>
 							</li>

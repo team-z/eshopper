@@ -25,7 +25,7 @@
 						<td>&nbsp</td>
 						<td>&nbsp</td>
 						<td>
-							<div class="form-group">
+							<div class="row">
 								<a href="#" class="btn btn-success"><span class="fa fa-arrow-circle-down"></span> Import Data</a>
 								<a href="#" class="btn btn-warning"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 							</div>
@@ -52,7 +52,6 @@
 						<td>Rp.<?php echo number_format($isi->harga_barang,2,'.',','); ?> ,-</td>
 						<td><?php echo $isi->suplier; ?></td>
 						<td>
-							<a href="<?php echo base_url('index.php/admin/detailbarang/').$isi->id_barang; ?>" class="btn btn-default"><span> Info </span></a>
 							<a href="<?php echo base_url('index.php/admin/edit/').$isi->id_barang; ?>" class="btn btn-primary"><span class="fa fa-refresh"></span> Update</a>
 							<a href="<?php echo base_url('index.php/admin/hapus/').$isi->id_barang; ?>" class="btn btn-danger" onclick="return confirm ('Hapus <?php echo $isi->nama_barang;?> ini ?');"title="Hapus"><span class="fa fa-trash-o"></span> Hapus</a>
 						</td>

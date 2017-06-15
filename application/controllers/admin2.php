@@ -29,6 +29,18 @@ class Admin2 extends CI_Controller {
 		$this->mod->hapusdata('transaksi',$where);
 		redirect('admin2/viewtransaksi');
 	}
+
+	public function unduh_excel()
+	{
+		$data['transaksi'] = $this->mod->tampil('transaksi')->result();
+		$this->load->view('admin/transaksi/transaksi_excel.php', $data);
+	}
+
+	public function unduh_pdf()
+	{
+		$data['transaksi'] = $this->mod->tampil('transaksi')->result();
+		$this->load->view('admin/transaksi/transaksi_pdf.php', $data);
+	}
 }
 
 /* End of file admin2.php */

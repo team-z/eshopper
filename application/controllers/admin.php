@@ -9,6 +9,9 @@ class Admin extends CI_Controller {
 		$this->load->helper('form','url');
 		$this->load->library('upload');
 		$this->load->model('mod');
+		if($this->session->userdata('status') != "login"){
+			redirect('login/index');
+		}
 	}
 
 	public function index()
@@ -35,11 +38,10 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/barang/barang', $data);
 	}
 
-	public function detailbarang($id_barang)
+	public function viewimport()
 	{
-		$where = array('id_barang' => $id_barang );
-		$file['data'] = $this->mod->detaildata('barang',$where)->result();
-		$this->load->view('admin/barang/detailbarang', $file);
+		$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/barang/import.php',$data);
 	}
 
 	public function edit($id_barang)
@@ -47,6 +49,18 @@ class Admin extends CI_Controller {
 		$where = array('id_barang' => $id_barang );
 		$up['data'] = $this->mod->detaildata('barang', $where)->result();
 		$this->load->view('admin/barang/updatebarang', $up);
+	}
+
+	public function unduh_excel()
+	{
+		$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/barang/barang_excel.php', $data);
+	}
+
+	public function unduh_pdf()
+	{
+		$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/barang/barang_pdf.php', $data);
 	}
 
 	public function update()
@@ -159,6 +173,54 @@ class Admin extends CI_Controller {
 		$where = array('id_barang' => $id_barang );
 		$this->mod->hapusdata('barang',$where);
 		redirect('admin/viewbarang');
+	}
+
+	public function buat_template()
+	{
+		$this->load->view('admin/barang/tabel-barang');
+	}
+
+	public function import()
+	{
+		$fp = fopen($_FILES['userfile']['tmp_name'],'r') or die("can't open file");
+		   while($csv_line = fgetcsv($fp,1024)) 
+		   {
+		 for ($i = 0, $j = count($csv_line); $i < $j; $i++) 
+		   {
+		 
+		 
+		    $insert_csv = array();
+		    $insert_csv['id_barang'] = $csv_line[0];
+		    $insert_csv['nama_barang'] = $csv_line[1];
+		    $insert_csv['authorized'] = $csv_line[2];
+		    $insert_csv['address'] = $csv_line[3];
+		    $insert_csv['contact_no'] = $csv_line[4];
+		    $insert_csv['mobile_no'] = $csv_line[5];
+		    $insert_csv['fax'] = $csv_line[6];
+		    $insert_csv['email_id'] = $csv_line[7];
+		    $insert_csv['website_addr'] = $csv_line[8];
+		    $insert_csv['state'] = $csv_line[9];
+		    $insert_csv['city'] = $csv_line[10];
+		   
+		   }
+		 
+		   $data = array(
+		    'id_barang' => $insert_csv['id_barang'] ,
+		    'nama_barang' => $insert_csv['nama_barang'],
+		    'authorized' => $insert_csv['authorized'],
+		    'address' => $insert_csv['address'] ,
+		    'contact_no' => $insert_csv['contact_no'],
+		    'mobile_no' => $insert_csv['mobile_no'],
+		    'fax' => $insert_csv['fax'] ,
+		    'email_id' => $insert_csv['email_id'] ,
+		    'website_addr' => $insert_csv['website_addr'],
+		    'state' => $insert_csv['state'],
+		    'city' => $insert_csv['city']);
+		       $data['crane_features']=$this->db->insert('sampledata', $data);
+		      }
+		                   fclose($fp) or die("can't close file");
+		        $data['success']="success";
+		        return $data;
 	}
 }
 

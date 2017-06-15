@@ -23,7 +23,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="#">
+									<a href="<?php echo base_url('index.php/login/logout'); ?>">
 										<span class="fa-stack">
 											<i class="fa fa-circle fa-stack-2x"></i>
 											<i class="fa fa-power-off fa-stack-1x"></i>

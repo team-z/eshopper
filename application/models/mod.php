@@ -35,6 +35,9 @@ class Mod extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+		function cek_login($table,$where){		
+		return $this->db->get_where($table,$where);
+	}
 }
 
 /* End of file mod.php */

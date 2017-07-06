@@ -18,6 +18,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<td></td>
+						<td></td>
 						<td>
 							<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 								
@@ -51,9 +53,11 @@
 					</tr>
 					<tr>
 						<th>No.</th>
+						<th>Kode Vertifikasi</th>
 						<th>Nama Pelanggan</th>
 						<th>Barang Beli</th>
-						<th>Jumlah Bli</th>
+						<th>Jumlah Beli</th>
+						<th>Status</th>
 						<th>Opsi</th>
 					</tr>
 				</thead>
@@ -64,9 +68,11 @@
 					?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<td><?php echo $isi->kode_vertifikasi; ?></td>
 						<td><?php echo $isi->nama_pelanggan; ?></td>
 						<td><?php echo $isi->barang_beli; ?></td>
 						<td><?php echo $isi->qty_beli; ?></td>
+						<td><?php echo $isi->status; ?></td>
 						<td>
 							<a href="<?php echo base_url('index.php/admin2/dtltransaksi/').$isi->id_transaksi; ?>" class="btn btn-default"><span></span> Detail</a>		
 							<a href="<?php echo base_url('index.php/admin2/hapustransaksi/').$isi->id_transaksi; ?>" class="btn btn-danger"><span class="fa fa-trash-o"></span> Hapus</a>
@@ -75,6 +81,9 @@
 					<?php  }?>
 				</tbody>
 			</table>
+			<ul class="pagination">
+				<?php echo $this->pagination->create_links(); ?>
+			</ul>
 		</div>
 	</div>
 	<?php $this->load->view('admin/bottom.php'); ?>

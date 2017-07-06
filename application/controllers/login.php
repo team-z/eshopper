@@ -21,10 +21,22 @@ class Login extends CI_Controller {
 			'password' => $password
 			);
 		$cek = $this->mod->cek_login("admin",$where)->num_rows();
+
 		if($cek > 0){
- 
+ 			
+
 			$data_session = array(
-				'nama' => $username,
+				//'id_admin' => $cek->id_admin,
+				//'nama_lengkap' => $cek->nama_lengkap,
+				'nama_user' => $username,
+				'password' => $password,
+				//'tempat_lahir' => $cek->tempat_lahir,
+				//'tanggal_lahir' => $cek->tanggal_lahir,
+				//'alamat_lengkap' => $cek->alamat_lengkap,
+				//'no_hp' => $cek->no_hp,
+				//'no_telepon' => $cek->no_telepon,
+				//'email' => $cek->email,
+				//'image' => $cek->image,
 				'status' => "login"
 				);
  

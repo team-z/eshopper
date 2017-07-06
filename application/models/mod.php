@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mod extends CI_Model {
 
 	public function tampil($table)
-		{
-			return $this->db->get($table);
-		}	
+	{
+		return $this->db->get($table);
+	}	
 
 	public function detaildata($table,$where)
 	{
@@ -37,6 +37,16 @@ class Mod extends CI_Model {
 	}
 		function cek_login($table,$where){		
 		return $this->db->get_where($table,$where);
+	}
+
+	public function data($table,$number,$offset)
+	{
+		return $query = $this->db->get($table,$number,$offset)->result();
+	}
+
+	public function jumlah_data($table)
+	{
+		return $this->db->get($table)->num_rows();
 	}
 }
 

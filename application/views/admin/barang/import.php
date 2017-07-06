@@ -16,17 +16,21 @@
 		<?php $this->load->view('admin/navigasi.php'); ?>
 
 		<h3><center>Import Data (CSV)</center></h3>
-		<?php echo $error; ?>
 		<div class="panel panel-default">
+            <?php if($this->session->flashdata('message')){?>
+              <div align="center" class="alert alert-success">      
+                <?php echo $this->session->flashdata('message')?>
+              </div>
+            <?php } ?>
 		<a href="<?php echo base_url('index.php/admin/buat_template'); ?>" class="btn btn-warning"><span></span>Buat Template</a>
             <div class="panel-heading">
                 Members list
                 <a href="javascript:void(0);" onclick="$('#importFrm').slideToggle();">Import Members</a>
             </div>
             <div class="panel-body">
-                <form action="<?php echo base_url('index.php/admin/import'); ?>" method="post" enctype="multipart/form-data" id="importFrm">
-                    <input type="file" name="file" />
-                    <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                <form action="<?php echo base_url('index.php/php_excel/upload'); ?>" method="POST" enctype="multipart/form-data" id="importFrm">
+                    <input type="file" name="file" id="file">
+                    <input type="submit" class="btn btn-primary" id="submit" name="import" value="IMPORT">
                 </form>
                 <table class="table table-bordered">
                     <thead>

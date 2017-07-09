@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('form','url');
+		$this->load->helper('form','url','download');
 		$this->load->library('upload');
 		$this->load->model('mod');
 		if($this->session->userdata('status') != "login"){
@@ -212,7 +212,8 @@ class Admin extends CI_Controller {
 
 	public function buat_template()
 	{
-		$this->load->view('admin/barang/tabel-barang');
+		//$this->load->view('admin/barang/tabel-barang');
+		force_download('./uploads/Barang.xls',NULL);
 	}
 
 	public function profil_admin()

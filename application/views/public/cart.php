@@ -46,11 +46,11 @@
                   if ($cart = $this->cart->contents()){ ?>
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td class="total">Action</td>
+							<td class="image">Nama Produk</td>
+							<td class="price">Harga</td>
+							<td class="quantity">Jumlah</td>
+							<td class="total">Total Harga</td>
+							<td class="total">Opsi</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -83,7 +83,7 @@
 							</td>
 							<?php $grand_total = $grand_total + $item['subtotal']; ?>
 							<td class="cart_total">
-							<p class="cart_total_price">Rp. <?php echo number_format($item['subtotal'],2,',','.'); ?></p>
+							<p class="cart_total_price">Rp <?php echo number_format($item['subtotal'],2,',','.'); ?></p>
 							</td>
 							<td>
 								<?php echo anchor('shopping/remove/' . $item['rowid'], 'Hapus'); ?>
@@ -111,26 +111,37 @@
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+				<h3>Apa yang akan anda lakukan selanjutnya ?</h3>
 			</div>
+			
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>Rp <?php 
-                        //Grand Total.
-                        echo number_format($grand_total, 2,',','.'); ?></span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>Rp <?php echo number_format($grand_total, 2,',','.'); ?></span></li>
+							<li>Total Harga <span><strong>Rp <?php echo number_format($grand_total, 2,',','.'); ?></strong></span><br>(Harga tidak termasuk ongkir)</li>
 							<li style="background-color: white;padding: 0;">
-							<a class="btn btn-default" href="<?php echo base_url('index.php/shopping/billing_view'); ?>">Place Order</a>
+							<a class="btn btn-default" href="<?php echo base_url('index.php/shopping/billing_view'); ?>">Checkout</a>
 							</li>
 						</ul>
 							<?php echo form_close(); ?>
 						</div>
                             <!-- "Place order button" on click send "billing" controller  -->
 					</div>
+				 <div class="col-sm-6">
+				 	<div class="total_area">
+				 		<div class="container">
+				 		Punya Kode Kupon ?<br>
+				 		<form class="form-inline">
+				 			<div class="form-group">
+				 				<input type="text" class="form-control" name="" placeholder="Masukkan Kode Kupon ...">
+				 			</div>
+				 			<div class="form-group">
+				 				<input type="submit" value="Verifikasi" class="form-control" name="">
+				 			</div>
+				 		</form>
+				 		</div>
+				 	</div>
+				 </div>
 				</div>
 			</div>
 		</div>

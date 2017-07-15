@@ -27,13 +27,13 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="<?php echo base_url('uploads/'.$key->image) ; ?>" class="img-circle" height="250" width="150">
-										<h2>Rp.<?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
+										<h2>Rp <?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 										<p><?php echo $key->nama_barang ; ?></p>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>Rp.<?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
+											<h2>Rp <?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 											<p><?php echo $key->nama_barang ; ?></p>
 											<?php
 							echo form_open('shopping/add');
@@ -67,12 +67,7 @@
 
 						<?php } ?>
 					</div>
-					<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>
+					<?php echo $this->pagination->create_links(); ?>
               </div>
 			</div>
 		</div>

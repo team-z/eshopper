@@ -66,19 +66,19 @@
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan <?php $query = mysqli_query($link,"SELECT * FROM barang ORDER BY id_barang DESC"); $m=mysqli_fetch_array($query); echo $m['nama_barang']; ?></strong> telah ditambahkan
+									<strong><?php $query = mysqli_query($link,"SELECT * FROM barang ORDER BY id_barang DESC"); $m=mysqli_fetch_array($query); echo $m['nama_barang']; ?></strong> telah ditambahkan
                             	</div>
                             	<div class="alert alert-warning">
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM transaksi ORDER BY id_transaksi DESC"); $j=mysqli_fetch_array($query); echo "Pelanggan".$j['nama_pelanggan']; ?></strong> telah melakukan pembelian <b><?= $j['barang_beli'] ?></b>
+									Pelanggan <strong><?php $query = mysqli_query($link,"SELECT * FROM transaksi ORDER BY id_transaksi DESC"); $j=mysqli_fetch_array($query);echo $j['nama_pelanggan']; ?></strong> telah melakukan pembelian <b><?= $j['barang_beli'] ?></b>
                             	</div>
                             	<div class="alert alert-info">
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM pengiriman ORDER BY id_transaksi DESC"); $k=mysqli_fetch_array($query); echo $m['nama_barang']. "telah dikirim kepada "."Pelanggan dengan ID Transaksi".$k['id_transaksi']; ?>
+									Produk <strong><?php $query = mysqli_query($link,"SELECT * FROM pengiriman ORDER BY id_transaksi DESC"); $k=mysqli_fetch_array($query); echo $m['nama_barang'] ; ?></strong> telah dikirim kepada Pelanggan dengan ID Transaksi <?php echo $k['id_transaksi']; ?>
                             	</div>
                             </div>
                         </header>

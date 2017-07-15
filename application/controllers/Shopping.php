@@ -12,9 +12,15 @@ class Shopping extends CI_Controller {
 
 	public function index()
 	{	
-                //Get all data from database
-		$data['products'] = $this->billing_model->get_all();
-                //send all product data to "shopping_view", which fetch from database.		
+        $this->load->library('pagination');
+    	$config['base_url'] = 'http://127.0.0.1/olshop/index.php/shopping/index/';
+    	$config['total_rows'] = $this->db->get('barang')->num_rows();
+    	$config['per_page'] = 6;
+    	$config['num_links'] = 3;
+    	include "paging_style.php";
+    	$this->pagination->initialize($config);
+    	$data['products']=$this->db->get('barang', $config['per_page'], $this->uri->segment(3))->result();
+    	$data['kategori']=$this->db->get('kategori')->result();	
 		$this->load->view('public/shop', $data);
 	}
 	public function cart()
@@ -83,7 +89,7 @@ class Shopping extends CI_Controller {
 	}	
         function billing_view(){
                 // Load "billing_view".
-		$this->load->view('billing_view');
+		$this->load->view('public/checkout');
         }
         
         	public function save_order()

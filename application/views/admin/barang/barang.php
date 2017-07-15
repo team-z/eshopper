@@ -12,27 +12,42 @@
 			<div class="col-md-8">
 				
 			</div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<td>
-							<div class="form-group">
-								<a href="<?php echo base_url('index.php/admin/tambahbarang'); ?>" class="btn btn-primary"><span class="fa fa-plus-square"></span> Tambah Barang</a>
-							</div>
-						</td>
-						<td>&nbsp</td>
-						<td>&nbsp</td>
-						<td>&nbsp</td>
-						<td>&nbsp</td>
-						<td>
-							<div class="row">
-								<a href="#" class="btn btn-success"><span class="fa fa-arrow-circle-down"></span> Import Data</a>
-								<a href="#" class="btn btn-warning"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
-							<div class="form-group">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="form-group">
+						<a href="<?php echo base_url('index.php/admin/tambahbarang'); ?>" class="btn btn-primary"><span class="fa fa-plus-square"></span> Tambah Barang</a>
+						<a href="#my" data-target="#my" data-toggle="modal" class="btn btn-default"><i class="fa fa-plus"></i> Tambah Kategori Barang</a>
+					</div>
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+								<a href="#myModal" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
+								<a href="" class="btn btn-danger"><i class="fa fa-table"></i> Lihat Stok</a>
 								<a href="<?php echo base_url('index.php/admin/viewimport'); ?>" class="btn btn-success"><span class="fa fa-arrow-circle-down"></span> Import Data</a>
-
-								<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
-								
+								<!-- Modal -->
+		                        <div id="my" class="modal fade" role="dialog">
+		                        	<div class="modal-dialog">
+		                            <!-- konten modal-->
+		                    			<div class="modal-content">
+		                    				<!-- heading modal -->
+		                                    <div class="modal-header">
+		                    					<button class="close" data-dismiss="modal">&times;</button>
+		                    					<h4 class="modal-title" align="center">Tambah Kategori</h4>
+		                                    </div>
+		                                    <!-- body modal -->
+		                                    <div class="modal-body">
+		                        				<form method="post" action="<?php echo base_url('index.php/admin/tambahkategori'); ?>">
+		                        					<div class="form-group">
+		                        						<input type="text" class="form-control" placeholder="Masukkan Kategori Baru" name="kategori">
+		                        					</div>
+		                        					<button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button>
+		                        				</form>
+		                        		    </div>
+		                                 </div>
+		                            </div>
+		                        </div>						
 		                        <!-- Modal -->
 		                        <div id="myModal" class="modal fade" role="dialog">
 		                        	<div class="modal-dialog">
@@ -59,9 +74,11 @@
 		                                 </div>
 		                            </div>
 		                        </div>
-							</div>
-						</td>
-					</tr>
+				</div>
+			</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
 					<tr>
 						<th>No.</th>
 						<th>Nama Barang</th>

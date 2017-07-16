@@ -6,11 +6,11 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('form','url');
+		$this->load->helper('form','url','download');
 		$this->load->library('upload');
 		$this->load->model('mod');
 		if($this->session->userdata('status') != "login"){
-			redirect('login/index');
+			redirect(base_url('login/index'));
 		}
 	}
 
@@ -34,7 +34,42 @@ class Admin extends CI_Controller {
 
 	public function viewbarang()
 	{
-		$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->database();
+		$jumlah_data = $this->mod->jumlah_data('barang');
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('index.php/admin/viewbarang');
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 10;
+
+		$from = $this->uri->segment(3);
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+ 
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+ 
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+ 
+        $config['prev_link'] = '&larr; Prev';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+ 
+        $config['cur_tag_open'] = '<li class="current"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+ 
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);		
+		$data['barang'] = $this->mod->data('barang',$config['per_page'],$from);
+		//$data['barang'] = $this->mod->tampil('barang')->result();
 		$this->load->view('admin/barang/barang', $data);
 	}
 
@@ -177,50 +212,26 @@ class Admin extends CI_Controller {
 
 	public function buat_template()
 	{
-		$this->load->view('admin/barang/tabel-barang');
+		//$this->load->view('admin/barang/tabel-barang');
+		force_download('./uploads/Barang.xls',NULL);
 	}
 
-	public function import()
+	public function profil_admin()
 	{
-		$fp = fopen($_FILES['userfile']['tmp_name'],'r') or die("can't open file");
-		   while($csv_line = fgetcsv($fp,1024)) 
-		   {
-		 for ($i = 0, $j = count($csv_line); $i < $j; $i++) 
-		   {
-		 
-		 
-		    $insert_csv = array();
-		    $insert_csv['id_barang'] = $csv_line[0];
-		    $insert_csv['nama_barang'] = $csv_line[1];
-		    $insert_csv['authorized'] = $csv_line[2];
-		    $insert_csv['address'] = $csv_line[3];
-		    $insert_csv['contact_no'] = $csv_line[4];
-		    $insert_csv['mobile_no'] = $csv_line[5];
-		    $insert_csv['fax'] = $csv_line[6];
-		    $insert_csv['email_id'] = $csv_line[7];
-		    $insert_csv['website_addr'] = $csv_line[8];
-		    $insert_csv['state'] = $csv_line[9];
-		    $insert_csv['city'] = $csv_line[10];
-		   
-		   }
-		 
-		   $data = array(
-		    'id_barang' => $insert_csv['id_barang'] ,
-		    'nama_barang' => $insert_csv['nama_barang'],
-		    'authorized' => $insert_csv['authorized'],
-		    'address' => $insert_csv['address'] ,
-		    'contact_no' => $insert_csv['contact_no'],
-		    'mobile_no' => $insert_csv['mobile_no'],
-		    'fax' => $insert_csv['fax'] ,
-		    'email_id' => $insert_csv['email_id'] ,
-		    'website_addr' => $insert_csv['website_addr'],
-		    'state' => $insert_csv['state'],
-		    'city' => $insert_csv['city']);
-		       $data['crane_features']=$this->db->insert('sampledata', $data);
-		      }
-		                   fclose($fp) or die("can't close file");
-		        $data['success']="success";
-		        return $data;
+		$data['profil_admin'] = array(//'id_admin' => $this->session->userdata('id_admin'),
+								  	  //'nama_lengkap' => $this->session->userdata('nama_lengkap'),
+								  	  'nama_user' => $this->session->userdata('nama_user'),
+								  	  'password' => $this->session->userdata('password'),
+								  	  //'tempat_lahir' => $this->session->userdata('tempat_lahir'),
+								  	  //'tanggal_lahir' => $this->session->userdata('tanggal_lahir'),
+								  	  //'alamat_lengkap' => $this->session->userdata('alamat_lengkap'),
+								  	  //'no_hp' => $this->session->userdata('no_hp'),
+								  	  //'no_telepon' => $this->session->userdata('no_telepon'),
+								  	  //'email' => $this->session->userdata('email'),
+								  	  //'image' => $this->session->userdata('image')
+									 ); 
+		
+		$this->load->view('admin/akun_admin');
 	}
 }
 

@@ -19,6 +19,7 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 				<th>Total Beli</th>
 				<th>Quanity Beli</th>
 				<th>No. Rekening</th>
+				<th>Tanggal Transaksi</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,6 +34,7 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 				<td><?= $i->total_beli ?></td>
 				<td><?= $i->qty_beli ?></td>
 				<td><?= $i->no_rekening ?></td>
+				<td><?= $i->tanggal_transaksi ?></td>
 			</tr>
 		<?php } ?>
 		</tbody>

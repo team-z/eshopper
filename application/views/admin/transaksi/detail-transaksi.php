@@ -49,7 +49,7 @@
 								<th>
 									<div class="form-group">
 										<label for="user">Total Beli</label>
-										<input type="text" class="form-control" name="total_beli" value="<?php echo $key->total_beli; ?>" readonly>
+										<input type="text" class="form-control" name="total_beli" value="Rp <?php echo number_format($key->total_beli,2,',','.'); ?> ,-" readonly>
 									</div>
 								</th>
 								<th>
@@ -60,10 +60,30 @@
 								</th>
 							</tr>
 							<tr>
-								<th colspan="2">
+								<th>
 									<div class="form-group">
 										<label for="user">No.Rekening</label>
 										<input type="text" class="form-control" name="no_rekening" value="<?php echo $key->no_rekening; ?>" readonly>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label for="user">Kode Vertifikasi</label>
+										<input type="text" class="form-control" name="kode_vertifikasi" value="<?php echo $key->kode_vertifikasi; ?>" readonly>
+									</div>
+								</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="form-group">
+										<label for="user">Status</label>
+										<input type="text" class="form-control" name="status" value="<?php echo $key->status; ?>" readonly>
+									</div>
+								</th>
+								<th>
+									<div class="form-group">
+										<label for="user">Tanggal Beli</label>
+										<input type="text" class="form-control" name="tanggal_transaksi" value="<?php echo $key->tanggal_transaksi; ?>" readonly>
 									</div>
 								</th>
 							</tr>

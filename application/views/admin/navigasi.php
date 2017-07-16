@@ -31,16 +31,12 @@
 									</a>
 								</li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<a href="<?php echo base_url('index.php/admin/profil_admin'); ?>">
 										<span class="fa-stack">
 											<i class="fa fa-circle fa-stack-2x"></i>
 											<i class="fa fa-user fa-stack-1x"></i>
 										</span>
 									</a>
-									<ul class="dropdown-menu">
-										<li><a href="#"><i class="fa fa-fw fa-bell-o"></i> Action</a></li>
-										<li><a href="#"><i class="fa fa-fw fa-camera"></i> Another action</a></li>
-									</ul>
 								</li>
 							</ul>
 						</div>

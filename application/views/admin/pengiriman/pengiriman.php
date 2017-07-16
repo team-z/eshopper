@@ -21,10 +21,10 @@
 								<th></th>
 								<th></th>
 								<th>
-									<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
+									<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal1"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 								
 		                        <!-- Modal -->
-		                        <div id="myModal" class="modal fade" role="dialog">
+		                        <div id="myModal1" class="modal fade" role="dialog">
 		                        	<div class="modal-dialog">
 		                            <!-- konten modal-->
 		                    			<div class="modal-content">
@@ -108,6 +108,9 @@
 						<?php } ?>
 						</tbody>
 					</table>
+					<ul class="pagination">
+						<?php echo $this->pagination->create_links(); ?>
+					</ul>
 				</div>
 				</div>
 		</div>

@@ -15,18 +15,22 @@
 	<div id="main-panel">
 		<?php $this->load->view('admin/navigasi.php'); ?>
 
-		<h3><center>Import Data (CSV)</center></h3>
-		<?php echo $error; ?>
+		<h3><center>Import Data (.xlsx)</center></h3>
 		<div class="panel panel-default">
+        <section class="content">
+            <div>
+                <?php echo @$pesan; ?>
+            </div>
+        </section>
 		<a href="<?php echo base_url('index.php/admin/buat_template'); ?>" class="btn btn-warning"><span></span>Buat Template</a>
             <div class="panel-heading">
                 Members list
                 <a href="javascript:void(0);" onclick="$('#importFrm').slideToggle();">Import Members</a>
             </div>
             <div class="panel-body">
-                <form action="<?php echo base_url('index.php/admin/import'); ?>" method="post" enctype="multipart/form-data" id="importFrm">
-                    <input type="file" name="file" />
-                    <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                <form action="<?php echo base_url('index.php/php_excel/importfile');  ?>" method="POST" enctype="multipart/form-data" id="importFrm">
+                    <input type="file" name="file" id="file">
+                    <input type="submit" class="btn btn-primary" id="submit" name="import" value="IMPORT">
                 </form>
                 <table class="table table-bordered">
                     <thead>

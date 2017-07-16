@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 02 Jun 2017 pada 05.43
--- Versi Server: 10.1.19-MariaDB
+-- Generation Time: Jul 06, 2017 at 03:04 PM
+-- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -40,10 +40,17 @@ CREATE TABLE `admin` (
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `nama_lengkap`, `nama_user`, `password`, `tempat_lahir`, `tanggal_lahir`, `alamat_lengkap`, `no_hp`, `no_telepon`, `email`, `image`) VALUES
+(2, 'admin', 'admin', 'admin', 'admin', '2017-06-13', 'admin', 812345678, 'admin', 'admin@gmail.com', 'admin');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
@@ -52,7 +59,7 @@ CREATE TABLE `barang` (
   `kategori` varchar(20) NOT NULL,
   `qty` int(11) NOT NULL,
   `harga_barang` varchar(25) NOT NULL,
-  `discount` varchar(4) NOT NULL,
+  `discount` int(4) NOT NULL,
   `spesifikasi` text NOT NULL,
   `suplier` varchar(20) NOT NULL,
   `alamat_suplier` text NOT NULL,
@@ -60,17 +67,40 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `kategori`, `qty`, `harga_barang`, `discount`, `spesifikasi`, `suplier`, `alamat_suplier`, `image`) VALUES
-(1, 'Grand Prime Golden Wacth', 'jam tangan', 100, '100', '50', 'bagus keren mantap', 'aryaagung', 'emboh', ''),
-(3, 'Grand Prime ARLOGI', 'jam tangan', 50, '200', '1', 'keren gila keren', 'aryaagung', 'jutak dung dung', '');
+(11, 'karma adi Wacther Arlogi', 'jam tangan', 10, '100', 50, 'keren', 'arpadiaga', 'Bandung', 'f1.jpg'),
+(13, 'Blue velvet arlogi watch', 'jam tangan', 20, '150', 50, 'unik banget', 'bisma armada', 'jakarta', '2.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengiriman`
+-- Table structure for table `pembelian`
+--
+
+CREATE TABLE `pembelian` (
+  `id_pembelian` int(9) NOT NULL,
+  `nama_pembeli` varchar(80) NOT NULL,
+  `barang_pembeli` varchar(50) NOT NULL,
+  `qty_pembeli` int(50) NOT NULL,
+  `total_harga` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_pembelian`, `nama_pembeli`, `barang_pembeli`, `qty_pembeli`, `total_harga`) VALUES
+(1, 'yofandi', 'Blue velvet arlogi watch', 1, 150),
+(2, 'kornelius', 'Blue velvet arlogi watch', 1, 150),
+(3, 'sabdari', 'Blue velvet arlogi watch', 2, 300);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengiriman`
 --
 
 CREATE TABLE `pengiriman` (
@@ -84,16 +114,18 @@ CREATE TABLE `pengiriman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengiriman`
+-- Dumping data for table `pengiriman`
 --
 
 INSERT INTO `pengiriman` (`id_transaksi`, `provinsi`, `kabupaten_kota`, `kecamatan`, `kodepos`, `alamat_lengkap`, `tanggal`) VALUES
-(4, 'Jawa Timur', 'Lumajang', 'Pasirian', 67832, 'Gang Sumarnoto No.131', '2017-05-31');
+(12, 'Jawa Timur', 'Lumajang', 'Yosowilangun', 67382, 'tunjungrejo RT03 RW05', '2017-01-24'),
+(13, 'Jawa Timur', 'Lumajang', 'Yosowilangun', 67382, 'tunjungrejo RT01 RW03', '2017-02-14'),
+(14, 'Jawa Timur', 'Lumajang', 'Yosowilangun', 67382, 'tunjungrejo RT01 RW02', '2017-03-09');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -104,15 +136,20 @@ CREATE TABLE `transaksi` (
   `barang_beli` varchar(100) NOT NULL,
   `total_beli` varchar(200) NOT NULL,
   `qty_beli` int(100) NOT NULL,
-  `no_rekening` varchar(50) NOT NULL
+  `no_rekening` varchar(50) NOT NULL,
+  `kode_vertifikasi` varchar(9) NOT NULL,
+  `status` varchar(8) NOT NULL,
+  `tanggal_transaksi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `nama_pelanggan`, `email_pelanggan`, `no_hp`, `barang_beli`, `total_beli`, `qty_beli`, `no_rekening`) VALUES
-(4, 'Gamma Luluh Lengingtyas Mawar Tania', 'gama@example.com', '089238100183', 'Grand Prime Golden Wacth', '100', 1, '1293008181080380');
+INSERT INTO `transaksi` (`id_transaksi`, `nama_pelanggan`, `email_pelanggan`, `no_hp`, `barang_beli`, `total_beli`, `qty_beli`, `no_rekening`, `kode_vertifikasi`, `status`, `tanggal_transaksi`) VALUES
+(12, 'yofandi', 'yofandi@example.com', '37294290202', 'Blue velvet arlogi watch', '150', 1, '73593759375377335353', 'yswl00001', 'DONE', '2017-01-24'),
+(13, 'kornelius', 'kornelius@example.com', '1014989438', 'Blue velvet arlogi watch', '100', 1, '394104848482040247', 'yswl00002', 'PENDING', '2017-02-14'),
+(14, 'sabdari', 'sabdari@example.com', '494395278486', 'Blue velvet arlogi watch', '300', 2, '42492', 'yswl00003', 'DONE', '2017-03-09');
 
 --
 -- Indexes for dumped tables
@@ -129,6 +166,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
+
+--
+-- Indexes for table `pembelian`
+--
+ALTER TABLE `pembelian`
+  ADD PRIMARY KEY (`id_pembelian`);
 
 --
 -- Indexes for table `pengiriman`
@@ -150,22 +193,27 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `pembelian`
+--
+ALTER TABLE `pembelian`
+  MODIFY `id_pembelian` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -12,6 +12,7 @@
 			<div class="col-md-8">
 				
 			</div>
+<<<<<<< HEAD
 			<div class="row">
 				<div class="col-md-5">
 					<div class="form-group">
@@ -25,6 +26,23 @@
 					<div class="form-group">
 								<a href="#myModal" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 								<a href="" class="btn btn-danger"><i class="fa fa-table"></i> Lihat Stok</a>
+=======
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>
+							<div class="form-group">
+								<a href="<?php echo base_url('index.php/admin/tambahbarang'); ?>" class="btn btn-primary"><span class="fa fa-plus-square"></span> Tambah Barang</a>
+							</div>
+						</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>
+							<div class="row">	
+							<div class="form-group">
+>>>>>>> 45fa4909fcfdd9e2ecb6ce77ccf4044545428169
 								<a href="<?php echo base_url('index.php/admin/viewimport'); ?>" class="btn btn-success"><span class="fa fa-arrow-circle-down"></span> Import Data</a>
 								<!-- Modal -->
 		                        <div id="my" class="modal fade" role="dialog">
@@ -90,7 +108,7 @@
 				</thead>
 				<tbody>
 				<?php
-				$no=1; 
+				$no=$this->uri->segment('3') + 1; 
 				foreach ($barang as $isi) {
 				?>
 					<tr>
@@ -100,7 +118,6 @@
 						<td>Rp.<?php echo number_format($isi->harga_barang,2,'.',','); ?> ,-</td>
 						<td><?php echo $isi->suplier; ?></td>
 						<td>
-							<a href="<?php echo base_url('index.php/admin/edit/').$isi->id_barang; ?>" class="btn btn-primary"><span class="fa fa-refresh"></span> Update</a>
 							<a href="<?php echo base_url('index.php/admin/edit/').$isi->id_barang; ?>" class="btn btn-default"><span></span> Detail</a>
 							<a href="<?php echo base_url('index.php/admin/hapus/').$isi->id_barang; ?>" class="btn btn-danger" onclick="return confirm ('Hapus <?php echo $isi->nama_barang;?> ini ?');"title="Hapus"><span class="fa fa-trash-o"></span> Hapus</a>
 						</td>
@@ -108,6 +125,9 @@
 				</tbody>
 				<?php } ?>
 			</table>
+			<ul class="pagination">
+				<?php echo $this->pagination->create_links(); ?>
+			</ul>
 		</div>
 	</div>
 	<?php $this->load->view('admin/bottom'); ?>

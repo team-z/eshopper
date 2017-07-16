@@ -10,7 +10,23 @@
 		<div id="main-panel">
 			<?php $this->load->view('admin/navigasi.php'); ?>
 			<h1><center>Transaksi</center></h1>
+<<<<<<< HEAD
 			<!-- Modal -->
+=======
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+							<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
+								
+		                        <!-- Modal -->
+>>>>>>> 45fa4909fcfdd9e2ecb6ce77ccf4044545428169
 		                        <div id="myModal" class="modal fade" role="dialog">
 		                        	<div class="modal-dialog">
 		                            <!-- konten modal-->
@@ -47,9 +63,16 @@
 				<thead>
 					<tr>
 						<th>No.</th>
+<<<<<<< HEAD
 						<th>Tanggal Beli</th>
 						<th>Nama Pelanggan</th>
 						<th>Jumlah Bli</th>
+=======
+						<th>Kode Vertifikasi</th>
+						<th>Nama Pelanggan</th>
+						<th>Barang Beli</th>
+						<th>Jumlah Beli</th>
+>>>>>>> 45fa4909fcfdd9e2ecb6ce77ccf4044545428169
 						<th>Status</th>
 						<th>Opsi</th>
 					</tr>
@@ -61,6 +84,7 @@
 					?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+<<<<<<< HEAD
 						<td><?php echo $isi->tgl_beli; ?></td>
 						<td><?php echo $isi->nama_pelanggan; ?></td>
 						<td>Rp <?php echo number_format($isi->total_beli,2,',','.'); ?></td>
@@ -71,6 +95,13 @@
 						<div style="background-color: green;color: white;padding: 3px;"><?php echo $isi->status ; ?></div>
 						<?php } ?>
 						</td>
+=======
+						<td><?php echo $isi->kode_vertifikasi; ?></td>
+						<td><?php echo $isi->nama_pelanggan; ?></td>
+						<td><?php echo $isi->barang_beli; ?></td>
+						<td><?php echo $isi->qty_beli; ?></td>
+						<td><?php echo $isi->status; ?></td>
+>>>>>>> 45fa4909fcfdd9e2ecb6ce77ccf4044545428169
 						<td>
 							<a href="<?php echo base_url('index.php/admin2/dtltransaksi/').$isi->id_transaksi; ?>" class="btn btn-default"><span></span> Detail</a>		
 							<a href="<?php echo base_url('index.php/admin2/hapustransaksi/').$isi->id_transaksi; ?>" class="btn btn-danger"><span class="fa fa-trash-o"></span> Hapus</a>
@@ -79,6 +110,9 @@
 					<?php  }?>
 				</tbody>
 			</table>
+			<ul class="pagination">
+				<?php echo $this->pagination->create_links(); ?>
+			</ul>
 		</div>
 	</div>
 	<?php $this->load->view('admin/bottom.php'); ?>

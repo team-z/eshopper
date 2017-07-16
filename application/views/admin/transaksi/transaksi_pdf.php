@@ -30,6 +30,7 @@ $pdf->Cell(4,1,"Barang Beli",1,0,"C");
 $pdf->Cell(2,1,"Total Beli",1,0,"C");
 $pdf->Cell(2,1,"Quanity Beli",1,0,"C");
 $pdf->Cell(3,1,"No.Rekening",1,0,"C");
+$pdf->Cell(3,1,"Tanggal Transaksi",1,0,"C");
 
 $pdf->Ln();
 
@@ -43,6 +44,7 @@ $pdf->Ln();
 		$pdf->Cell(2,1,$key->total_beli,1,0,"C");
 		$pdf->Cell(2,1,$key->qty_beli,1,0,"C");
 		$pdf->Cell(3,1,$key->no_rekening,1,0,"C");
+		$pdf->Cell(3,1,$key->tanggal_transaksi,1,0,"C");
 
 		$pdf->Ln();
 	}

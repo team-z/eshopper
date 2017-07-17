@@ -98,13 +98,13 @@
 	   <div class="container">
 	        <div class="row">
 				<div class="col-md-2">
-					<a href="<?php echo base_url('index.php/shopping/index'); ?>" class="btn btn-default btn-block">Continue Shopping</a>
+					<a href="<?php echo base_url('index.php/shopping/index'); ?>" class="btn btn-default btn-block">Lanjut Belanja</a>
 				</div>
 				<div class="col-md-2">
-					<input type="button" class ='btn btn-default btn-block' value="Clear Cart" onclick="clear_cart()">
+					<input type="button" class ='btn btn-default btn-block' value="Hapus Keranjang" onclick="clear_cart()">
 				</div>
 				<div class="col-md-2">
-					<input type="submit" class ='btn btn-default btn-block' value="Update Cart">
+					<input type="submit" class ='btn btn-default btn-block' value="Perbarui Keranjang">
 				</div>
 			</div>
 		</div>

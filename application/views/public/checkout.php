@@ -104,8 +104,8 @@
 						<tr class="cart_menu">
 							<td class="image">Item</td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
+							<td class="price">Quantity</td>
+							<td class="quantity">Price</td>
 							<td class="total">Total</td>
 							<td></td>
 						</tr>

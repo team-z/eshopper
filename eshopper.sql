@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2017 at 03:04 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Jul 17, 2017 at 11:23 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -72,7 +72,32 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `kategori`, `qty`, `harga_barang`, `discount`, `spesifikasi`, `suplier`, `alamat_suplier`, `image`) VALUES
 (11, 'karma adi Wacther Arlogi', 'jam tangan', 10, '100', 50, 'keren', 'arpadiaga', 'Bandung', 'f1.jpg'),
-(13, 'Blue velvet arlogi watch', 'jam tangan', 20, '150', 50, 'unik banget', 'bisma armada', 'jakarta', '2.jpg');
+(13, 'Blue velvet arlogi watch', 'jam tangan', 20, '150', 50, 'unik banget', 'bisma armada', 'jakarta', '2.jpg'),
+(14, 'celana sobek sobek', 'Celana', 20, '1000000', 0, 'kainnya sobek', 'sobek.co', 'gatau', 'ckey-celana-panjang-wanita-boyfriend-ripped-jeans-710-sobek-tidaktembus-kulit-1490055755-09790851-ccee71c940340c608b3a395c3bdcc288-catalog_233.jpg'),
+(15, 'Baju Biru', 'Baju', 15, '500000', 0, 'kain biru', 'baju.co', 'gatau', '107403502.jpg'),
+(16, 'baju biru tua', 'Baju', 12, '100000', 0, '', 'baju.co', 'gatau', '1473012160372349548.jpg'),
+(17, 'Topeng Badut', 'Topeng', 77, '50000', 0, 'topeng badut lucu', 'topeng.co', 'unknown', '10pc-lot-Clown-Hip-hop-Party-Simle-Face-Mask-Lovely-Clown-Mask.jpg'),
+(18, 'Topeng Starwars', 'Topeng', 13, '50000', 0, 'topeng asli', 'topeng.co', 'unknown', '18047317_B.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama`) VALUES
+(1, 'Celana'),
+(2, 'Baju'),
+(3, 'Topeng');
 
 -- --------------------------------------------------------
 
@@ -168,6 +193,12 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pembelian`
 --
 ALTER TABLE `pembelian`
@@ -198,7 +229,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pembelian`
 --

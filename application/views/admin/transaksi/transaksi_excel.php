@@ -15,10 +15,9 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 				<th>Nama Pelanggan</th>
 				<th>Email Pelanggan</th>
 				<th>No.Hp</th>
-				<th>Barang Beli</th>
 				<th>Total Beli</th>
-				<th>Quanity Beli</th>
 				<th>No. Rekening</th>
+				<th>Bank</th>
 				<th>Tanggal Transaksi</th>
 			</tr>
 		</thead>
@@ -30,10 +29,9 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 				<td><?= $i->nama_pelanggan ?></td>
 				<td><?= $i->email_pelanggan ?></td>
 				<td><?= $i->no_hp ?></td>
-				<td><?= $i->barang_beli ?></td>
-				<td><?= $i->total_beli ?></td>
-				<td><?= $i->qty_beli ?></td>
+				<td>Rp <?= number_format($i->total_harga,2,',','.') ?>,-</td>
 				<td><?= $i->no_rekening ?></td>
+				<td><?= $i->bank ?></td>
 				<td><?= $i->tanggal_transaksi ?></td>
 			</tr>
 		<?php } ?>

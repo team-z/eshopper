@@ -53,6 +53,7 @@
 		                </header>
 		                <div class="panel-body">
 		        	        <canvas id="linechart" width="600" height="300"></canvas>
+		        	        Menampilkan data banyaknya transaksi per-Bulan
 		                </div>
 		            </section>
 		            <section class="panel panel-primary">
@@ -80,19 +81,20 @@
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM transaksi ORDER BY id_transaksi DESC"); $j=mysqli_fetch_array($query); echo "Pelanggan ".$j['nama_pelanggan']; ?></strong> telah melakukan transaksi pembelian <b><?= $j['barang_beli'] ?></b>
+									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM transaksi ORDER BY id_transaksi DESC"); $j=mysqli_fetch_array($query); echo "Pelanggan "."<b>".$j['nama_pelanggan']."</b>"; ?></strong> telah melakukan transaksi pembelian
                             	</div>
                             	<div class="alert alert-info">
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM pengiriman ORDER BY id_transaksi DESC"); $k=mysqli_fetch_array($query); echo $m['nama_barang']. "telah dikirim kepada "."Pelanggan dengan ID Transaksi".$k['id_transaksi']; ?>
+									<strong>Pemberitahuan <?php $query = mysqli_query($link,"SELECT * FROM pengiriman ORDER BY id_transaksi DESC"); $k=mysqli_fetch_array($query); echo $m['nama_barang']."</strong>". " telah dikirim kepada "."Pelanggan dengan ID Transaksi <b>".$k['id_transaksi']."</b>"; ?>
                             	</div>
                             	<div class="alert alert-default">
                             		<button data-dismiss="alert" class="close close-sm" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-									<strong>Pemberitahuan</strong> <?php $query = mysqli_query($link,"SELECT * FROM pembelian ORDER BY id_pembelian DESC"); $kal=mysqli_fetch_array($query); echo "pelanggan ".$kal['nama_pembeli']. " telah membeli ".$kal['barang_pembeli']." dengan jumlah ".$kal['qty_pembeli']." unit"; ?>
+									<strong>Pemberitahuan</strong> <?php $kk = mysqli_query($link, "SELECT * FROM pesanan GROUP BY id_pesanan DESC"); $ao=mysqli_fetch_array($kk); 
+									echo "Pelanggan dengan id transaksi <b>".$ao['id_transaksi']."</b> telah membeli barang <b>".$ao['nama_barang']."</b> dengan jumlah <b>".$ao['qty_pesanan']."</b> unit"; ?>
                             	</div>
                             </div>
                         </header>
@@ -123,7 +125,7 @@
 	                            pointStrokeColor: "#fff",
 	                            pointHighlightFill: "#fff",
 	                            pointHighlightStroke: "rgba(151,187,205,1)",
-	                            data: [<?php echo $ss['SUM(total_beli)'].",".$ss2['SUM(total_beli)'].",".$ss3['SUM(total_beli)'].",".$ss4['SUM(total_beli)'].",".$ss5['SUM(total_beli)'].",".$ss6['SUM(total_beli)'].",".$ss7['SUM(total_beli)'].",".$ss8['SUM(total_beli)'].",".$ss9['SUM(total_beli)'].",".$ss10['SUM(total_beli)'].",".$ss11['SUM(total_beli)'].",".$ss12['SUM(total_beli)']; ?>]
+	                            data: [<?php echo $ss.",".$ss2.",".$ss3.",".$ss4.",".$ss5.",".$ss6.",".$ss7.",".$ss8.",".$ss9.",".$ss10.",".$ss11.",".$ss12; ?>]
 	                        }
 	                    ]
 	                };
@@ -148,7 +150,10 @@
 		        text: 'Stok Barang Saat Ini'
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		       // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>' //menampilkan jumlah satuan %
+		       valueDecimals: 0,
+		       //valuePrefix: '$',
+		       valueSuffix: ' Unit'
 		    },
 		    plotOptions: {
 		        pie: {
@@ -164,20 +169,20 @@
 		        }
 		    },
 		    series: [{
-		        name: 'Brands',
+		        name: 'Stok',
 		        colorByPoint: true,
 		        data: [
 		        		<?php
-                        $query = mysqli_query($link,"SELECT nama_barang from barang");
+                        $query = mysqli_query($link,"SELECT nama from kategori");
                      
                         while ($row = mysqli_fetch_array($query)) {
-                            $barang = $row['nama_barang'];
+                            $barang = $row['nama'];
                          
-                            $data = mysqli_fetch_array(mysqli_query($link,"SELECT qty from barang where nama_barang='$barang'"));
-                            $jumlah = $data['qty'];
+                            $data = mysqli_query($link,"SELECT SUM(qty) from barang where kategori='$barang'");
+                            $jumlah = mysqli_fetch_array($data);
                             ?>
                             [ 
-                                '<?php echo $barang ?>', <?php echo $jumlah; ?>
+                                '<?php echo $barang ?>', <?php echo $jumlah['SUM(qty)']; ?>
                             ],
                             <?php
                         }

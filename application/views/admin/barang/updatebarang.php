@@ -20,7 +20,11 @@
 	                                } else {
 	                                    echo base_url('uploads/'.$key->image);
 	                                } ?>" height="200" width="200" class="img-circle" alt="User Image"/>
-						 <input accept="image/*" class="input"  onchange="tampilkanPreview(this,'preview')" type="file" name="gambar">
+						 <input accept="image/*" class="input"  onchange="tampilkanPreview(this,'preview')" type="file" name="gambar" value="<?php if ($key->image == "") {
+	                                    echo "me.PNG";
+	                                } else {
+	                                    echo $key->image;
+	                                } ?>">
 					<?php } ?>
 					</div>
 

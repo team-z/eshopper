@@ -9,9 +9,8 @@
 		<?php $this->load->view('admin/sidebar.php'); ?>
 		<div id="main-panel">
 			<?php $this->load->view('admin/navigasi.php'); ?>
-			<div class="col-md-8">
-				
-			</div>
+			
+			<h2><center>BARANG</center></h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>

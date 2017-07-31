@@ -1,17 +1,21 @@
 <?php 
 $this->load->view('fpdf181/fpdf.php');
 
-$pdf= new FPDF('L','cm',array(28,18));
+$pdf= new FPDF('L','cm',array(24,17));
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',15);
+$pdf->MultiCell(23,0.5,'E shopper',0,'C'); 
 $pdf->SetX(3); 
-$pdf->MultiCell(19.5,0.5,'E shopper',0,'C'); 
-$pdf->SetX(3); 
-$pdf->MultiCell(19.5,0.5,'Barang',0,'C'); 
+$pdf->MultiCell(19,0.5,'Loe Pasti Puas',0,'C'); 
 $pdf->SetFont('Arial','B',10); 
-$pdf->Line(1,3.1,27,3.1); 
+$pdf->SetX(3); 
+$pdf->MultiCell(19,0.5,'MASCITRA.COM',0,'C'); 
+$pdf->SetX(3);
+$pdf->MultiCell(19,0.5,'Jl.Bungur N0.130, Gebang, Kec.Patrang, Kab.Jember',0,'C'); 
+$pdf->SetX(3);
+$pdf->Line(1,3.1,23,3.1); 
 $pdf->SetLineWidth(0.1); 
-$pdf->Line(1,3.2,27,3.2); 
+$pdf->Line(1,3.2,23,3.2); 
 $pdf->SetLineWidth(0);
 
 $pdf->Ln();
@@ -26,7 +30,6 @@ $pdf->Cell(2,1,"Discount",1,0,"C");
 $pdf->Cell(2,1,"Spesifikasi",1,0,"C");
 $pdf->Cell(2,1,"Suplier",1,0,"C");
 $pdf->Cell(2,1,"Alamat Suplier",1,0,"C");
-$pdf->Cell(2,1,"Image",1,0,"C");
 
 $pdf->Ln();
 
@@ -40,7 +43,6 @@ $pdf->Ln();
 		$spesifikasi = $isi->spesifikasi;
 		$suplier = $isi->suplier;
 		$alamat_suplier = $isi->alamat_suplier;
-		$image = $isi->image;
 
 		$pdf->Cell(1.5,1,$id_barang,1,0,"C");
 		$pdf->Cell(4,1,$nama_barang,1,0,"C");
@@ -51,7 +53,6 @@ $pdf->Ln();
 		$pdf->Cell(2,1,$spesifikasi,1,0,"C");
 		$pdf->Cell(2,1,$suplier,1,0,"C");
 		$pdf->Cell(2,1,$alamat_suplier,1,0,"C");
-		$pdf->Image(base_url('uploads/'.$image),1,1,2,2);
 		
 		$pdf->Ln();
 	}

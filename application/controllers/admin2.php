@@ -59,6 +59,20 @@ class Admin2 extends CI_Controller {
 		$this->load->view('admin/transaksi/detail-transaksi', $data);
 	}
 
+	public function update_ststransaksi()
+	{
+		$id_transaksi = $this->input->post('id_transaksi');
+		$status = $this->input->post('status');
+
+		$where = array('id_transaksi' => $id_transaksi );
+
+		$object = array('status' => $status );
+
+		$this->mod->updatedata('transaksi', $where, $object);
+		redirect('admin2/viewtransaksi');
+
+	}
+
 	public function hapustransaksi($id_transaksi)
 	{
 		$where = array('id_transaksi' => $id_transaksi );
@@ -68,13 +82,20 @@ class Admin2 extends CI_Controller {
 
 	public function unduh_excel()
 	{
-		$data['transaksi'] = $this->mod->tampil('transaksi')->result();
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->join('pesanan', 'transaksi.id_transaksi = pesanan.id_transaksi');
+		$data['transaksi'] = $this->db->get()->result();
 		$this->load->view('admin/transaksi/transaksi_excel.php', $data);
 	}
 
 	public function unduh_pdf()
 	{
-		$data['transaksi'] = $this->mod->tampil('transaksi')->result();
+		//$data['transaksi'] = $this->mod->tampil('transaksi')->result();
+		$this->db->select('*');
+		$this->db->from('transaksi');
+		$this->db->join('pesanan', 'transaksi.id_transaksi = pesanan.id_transaksi');
+		$data['transaksi'] = $this->db->get()->result();
 		$this->load->view('admin/transaksi/transaksi_pdf.php', $data);
 	}
 }

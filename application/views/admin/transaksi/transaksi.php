@@ -18,8 +18,6 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
-						<td></td>
 						<td>
 							<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 								
@@ -55,8 +53,6 @@
 						<th>No.</th>
 						<th>Kode Vertifikasi</th>
 						<th>Nama Pelanggan</th>
-						<th>Barang Beli</th>
-						<th>Jumlah Beli</th>
 						<th>Status</th>
 						<th>Opsi</th>
 					</tr>
@@ -70,8 +66,6 @@
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $isi->kode_vertifikasi; ?></td>
 						<td><?php echo $isi->nama_pelanggan; ?></td>
-						<td><?php echo $isi->barang_beli; ?></td>
-						<td><?php echo $isi->qty_beli; ?></td>
 						<td><?php echo $isi->status; ?></td>
 						<td>
 							<a href="<?php echo base_url('index.php/admin2/dtltransaksi/').$isi->id_transaksi; ?>" class="btn btn-default"><span></span> Detail</a>		

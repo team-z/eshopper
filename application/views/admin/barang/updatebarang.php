@@ -12,22 +12,21 @@
 			
 			<div class="row">
 
-				<?php echo form_open_multipart('admin/update'); ?>
-					<div class="col-md-3">
+				
+				<div class="col-md-3">
+					<div class="form-group">
 					<?php foreach ($data as $key) {?>
-						 <img id="preview" src="<?php if ($key->image == "") {
-	                                    echo base_url('uploads/me.PNG');
-	                                } else {
-	                                    echo base_url('uploads/'.$key->image);
-	                                } ?>" height="200" width="200" class="img-circle" alt="User Image"/>
-						 <input accept="image/*" class="input"  onchange="tampilkanPreview(this,'preview')" type="file" name="gambar" value="<?php if ($key->image == "") {
-	                                    echo "me.PNG";
-	                                } else {
-	                                    echo $key->image;
-	                                } ?>">
+						<img id="preview" src="<?php if ($key->image == "") {
+		                                   echo base_url('uploads/me.PNG');
+		                               } else {
+		                                   echo base_url('uploads/'.$key->image);
+		                               } ?>" height="200" width="200" class="img-circle" alt="User Image"/>
+		                    <a href="<?php echo base_url('index.php/admin/view_updateimgbrg/').$key->id_barang; ?>" class="btn btn-block btn-default"><span class="fa fa-picture-o"></span> Update Image</a>
 					<?php } ?>
 					</div>
-
+				</div>
+					
+				<?php echo form_open_multipart('admin/update'); ?>
 					<div class="col-md-9">
 						<table class="table table-striped">
 							<?php foreach ($data as $key) {?>

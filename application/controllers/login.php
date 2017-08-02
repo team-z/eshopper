@@ -20,26 +20,26 @@ class Login extends CI_Controller {
 			'nama_user' => $username,
 			'password' => $password
 			);
-		$cek = $this->mod->cek_login("admin",$where)->num_rows();
+		$cek = $this->mod->cek_login("admin",$where)->result();
 
 		if($cek > 0){
  			
 
 			$data_session = array(
-				//'id_admin' => $cek->id_admin,
-				//'nama_lengkap' => $cek->nama_lengkap,
+				'id_admin' => $cek[0]->id_admin,
+				'nama_lengkap' => $cek[0]->nama_lengkap,
 				'nama_user' => $username,
 				'password' => $password,
-				//'tempat_lahir' => $cek->tempat_lahir,
-				//'tanggal_lahir' => $cek->tanggal_lahir,
-				//'alamat_lengkap' => $cek->alamat_lengkap,
-				//'no_hp' => $cek->no_hp,
-				//'no_telepon' => $cek->no_telepon,
-				//'email' => $cek->email,
-				//'image' => $cek->image,
+				'tempat_lahir' => $cek[0]->tempat_lahir,
+				'tanggal_lahir' => $cek[0]->tanggal_lahir,
+				'alamat_lengkap' => $cek[0]->alamat_lengkap,
+				'no_hp' => $cek[0]->no_hp,
+				'no_telepon' => $cek[0]->no_telepon,
+				'email' => $cek[0]->email,
+				'image' => $cek[0]->image,
 				'status' => "login"
 				);
- 
+ 			
 			$this->session->set_userdata($data_session);
  
 			redirect('admin');

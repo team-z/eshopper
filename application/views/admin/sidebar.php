@@ -5,7 +5,9 @@
 					<span class="text-size-18 text-grey">Loe Pasti puaass</span>
 				</div>
 				<div class="sidebar-avatar">
-					<div class="sidebar-avatar-image"><img src="<?php echo base_url('assets/images/me.PNG'); ?> " alt="" class="img-circle"></div>
+					<div class="sidebar-avatar-image"><img src="<?php $data = $this->db->get('admin')->result(); foreach ($data as $key) {
+						echo base_url('uploads/'.$key->image);	
+					}?> " alt="" class="img-circle"></div>
 					<div class="sidebar-avatar-text">e-shopper</div>
 				</div>
 				<ul class="sidebar-nav">

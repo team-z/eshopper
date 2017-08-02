@@ -98,7 +98,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/barang/barang_pdf.php', $data);
 	}
 
-	public function update()
+	public function view_updateimgbrg($id_barang)
+	{
+		$where = array('id_barang' => $id_barang );
+		$data['view'] = $this->mod->detaildata('barang', $where)->result();
+		$this->load->view('admin/barang/view_updateimgbrg.php', $data);
+	}
+
+	public function update_image()
 	{
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -106,6 +113,7 @@ class Admin extends CI_Controller {
 		$config['max_width']  = '6000';
 		$config['max_height']  = '2048';
 		
+		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
 		
 		if ( ! $this->upload->do_upload('gambar')){
@@ -114,6 +122,18 @@ class Admin extends CI_Controller {
 		else{
 			$gambar = $this->upload->file_name;
 		}
+
+		$id_barang = $this->input->post('id_barang');
+		$where = array('id_barang' => $id_barang );
+
+		$object = array('image' => $gambar);
+
+		$this->mod->updatedata('barang', $where, $object);
+		redirect('admin/viewbarang');
+	}
+
+	public function update()
+	{
 			$id_barang = $this->input->post('id_barang');
 			$nama_barang = $this->input->post('nama_barang');
 			$kategori = $this->input->post('kategori');
@@ -134,8 +154,7 @@ class Admin extends CI_Controller {
 							'discount' => $discount,
 							'suplier' => $suplier,
 							'alamat_suplier' => $alamat_suplier,
-							'spesifikasi' => $spesifikasi,
-							'image' => $gambar );
+							'spesifikasi' => $spesifikasi);
 
 			$this->mod->updatedata('barang', $where, $object);
 			redirect('admin/viewbarang');
@@ -216,22 +235,78 @@ class Admin extends CI_Controller {
 		force_download('./uploads/Barang.xls',NULL);
 	}
 
-	public function profil_admin()
+	public function profil_admin($id_admin)
 	{
-		$data['profil_admin'] = array(//'id_admin' => $this->session->userdata('id_admin'),
-								  	  //'nama_lengkap' => $this->session->userdata('nama_lengkap'),
-								  	  'nama_user' => $this->session->userdata('nama_user'),
-								  	  'password' => $this->session->userdata('password'),
-								  	  //'tempat_lahir' => $this->session->userdata('tempat_lahir'),
-								  	  //'tanggal_lahir' => $this->session->userdata('tanggal_lahir'),
-								  	  //'alamat_lengkap' => $this->session->userdata('alamat_lengkap'),
-								  	  //'no_hp' => $this->session->userdata('no_hp'),
-								  	  //'no_telepon' => $this->session->userdata('no_telepon'),
-								  	  //'email' => $this->session->userdata('email'),
-								  	  //'image' => $this->session->userdata('image')
-									 ); 
+		$where = array('id_admin' => $id_admin);
+		$data['admin'] = $this->mod->detaildata('admin', $where)->result();
+		$this->load->view('admin/akun_admin', $data);
+	}
+
+	public function edit_admin()
+	{
+		$id_admin = $this->input->post('id_admin');
+		$nama_lengkap = $this->input->post('nama_lengkap');
+		$nama_user = $this->input->post('nama_user');
+		$password = $this->input->post('password');
+		$tempat_lahir = $this->input->post('tempat_lahir'); 
+		$tanggal_lahir = $this->input->post('tanggal_lahir');
+		$alamat_lengkap = $this->input->post('alamat_lengkap');
+		$no_hp = $this->input->post('no_hp');
+		$no_telepon = $this->input->post('no_telepon');
+		$email = $this->input->post('email');
+
+		$object = array('id_admin' => $id_admin,
+						'nama_lengkap' => $nama_lengkap,
+						'nama_user' => $nama_user,
+						'password' => $password,
+						'tempat_lahir' => $tempat_lahir,
+						'tanggal_lahir' => $tanggal_lahir,
+						'alamat_lengkap' => $alamat_lengkap,
+						'no_hp' => $no_hp,
+						'no_telepon' => $no_telepon,
+						'email' => $email
+						);
+		$where = array('id_admin' => $id_admin );
+
+		$this->mod->updatedata('admin', $where, $object);
+
+		redirect('admin/index');
+	}
+
+	public function view_imgadmn($id_admin)
+	{
+		$where = array('id_admin' => $id_admin );
+		$data['img'] = $this->mod->detaildata('admin', $where)->result();
+
+		$this->load->view('admin/view_imgadmn.php', $data);
+	}
+
+	public function update_imgadmn()
+	{
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '5000';
+		$config['max_width']  = '6000';
+		$config['max_height']  = '2048';
 		
-		$this->load->view('admin/akun_admin');
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		
+		if ( ! $this->upload->do_upload('gambar')){
+			$gambar = "";
+		}
+		else{
+			$gambar = $this->upload->file_name;
+		}
+
+		$id_admin = $this->input->post('id_admin');
+
+		$where = array('id_admin' => $id_admin );
+		$object = array('image' => $gambar );
+
+		$this->mod->updatedata('admin', $where, $object);
+
+		redirect('admin/index');
 	}
 }
 

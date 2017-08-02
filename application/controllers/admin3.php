@@ -64,6 +64,16 @@ class Admin3 extends CI_Controller {
 
 	}
 
+	public function detail_pengiriman($id_transaksi)
+	{
+		$this->db->select('*');
+		$this->db->from('pengiriman');
+		$this->db->join('transaksi', 'transaksi.id_transaksi = pengiriman.id_transaksi');
+		$this->db->where('transaksi.id_transaksi', $id_transaksi);
+		$data['data'] = $this->db->get()->result();
+		$this->load->view('admin/pengiriman/detail_pengiriman', $data);
+	}
+
 	public function unduh_excel()
 	{
 		$this->db->select('*');

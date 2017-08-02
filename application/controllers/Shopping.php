@@ -13,7 +13,7 @@ class Shopping extends CI_Controller {
 	public function index()
 	{	
         $this->load->library('pagination');
-    	$config['base_url'] = 'http://127.0.0.1/olshop/index.php/shopping/index/';
+    	$config['base_url'] = 'http://127.0.0.1/eshop/index.php/shopping/index/';
     	$config['total_rows'] = $this->db->get('barang')->num_rows();
     	$config['per_page'] = 6;
     	$config['num_links'] = 3;
@@ -95,38 +95,48 @@ class Shopping extends CI_Controller {
         	public function save_order()
 	{
           // This will store all values which inserted  from user.
+		$rand = rand(17823,21563);
+		$date = date("Y-m-d h:i:sa");
 		$customer = array(
-			'name' 		=> $this->input->post('name'),
-			'email' 	=> $this->input->post('email'),
-			'address' 	=> $this->input->post('address'),
-			'phone' 	=> $this->input->post('phone')
+			'nama_pelanggan' 	=> $this->input->post('nama'),
+			'no_pesanan'		=> $this->input->post('no_pesanan'),
+			'email_pelanggan' 	=> $this->input->post('email'),
+			'no_rekening' 			=> $this->input->post('no_rek'),
+			'no_hp' 			=> $this->input->post('no_hp'),
+			'bank'				=> $this->input->post('bank'),
+			'tanggal_transaksi'	=> $date,
+			'kode_vertifikasi'	=> $rand,
+			'status'			=> 'PENDING'
 		);		
                  // And store user imformation in database.
 		$cust_id = $this->billing_model->insert_customer($customer);
-
-		$order = array(
-			'date' 			=> date('Y-m-d'),
-			'customerid' 	=> $cust_id
-		);		
-
-		$ord_id = $this->billing_model->insert_order($order);
-		
 		if ($cart = $this->cart->contents()):
 			foreach ($cart as $item):
 				$order_detail = array(
-					'orderid' 		=> $ord_id,
-					'productid' 	=> $item['id'],
-					'quantity' 		=> $item['qty'],
-					'price' 		=> $item['price']
+					'id_transaksi' 		=> $cust_id,
+					'nama_barang' 	=> $item['name'],
+					'qty_pesanan' 		=> $item['qty'],
+					'total_harga' 		=> $item['subtotal'],
+					'tanggal_transaksi' => date("Y-m-d")
 				);		
 
                             // Insert product imformation with order detail, store in cart also store in database. 
                 
-		         $cust_id = $this->billing_model->insert_order_detail($order_detail);
+		    $this->billing_model->insert_order($order_detail);
 			endforeach;
 		endif;
 	      
                 // After storing all imformation in database load "billing_success".
-                $this->load->view('billing_success');
+                redirect('shopping/verify');
+	}
+	public function verify()
+	{
+		$this->load->view('public/verify');
+	}
+	public function verifyAction()
+	{
+		$where = array('kode_vertifikasi' => $this->input->post('kode'));
+		$data['user'] = $this->billing_model->select('transaksi',$where)->result();
+		$this->load->view('public/shipping', $data);
 	}
 }

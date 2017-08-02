@@ -11,7 +11,7 @@ class Billing_model extends CI_Model {
     // Insert customer details in "customer" table in database.
 	public function insert_customer($data)
 	{
-		$this->db->insert('customers', $data);
+		$this->db->insert('transaksi', $data);
 		$id = $this->db->insert_id();
 		return (isset($id)) ? $id : FALSE;		
 	}
@@ -19,7 +19,7 @@ class Billing_model extends CI_Model {
         // Insert order date with customer id in "orders" table in database.
 	public function insert_order($data)
 	{
-		$this->db->insert('orders', $data);
+		$this->db->insert('pesanan', $data);
 		$id = $this->db->insert_id();
 		return (isset($id)) ? $id : FALSE;
 	}
@@ -29,5 +29,11 @@ class Billing_model extends CI_Model {
 	{
 		$this->db->insert('order_detail', $data);
 	}
-       
+
+	// Get one Item
+    public function select($table,$where)
+    {
+    	$this->db->where($where);
+    	return $this->db->get($table);
+    }
 }

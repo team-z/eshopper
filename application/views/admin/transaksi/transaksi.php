@@ -14,7 +14,11 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<td></td>
+						<td colspan="2">
+						<form method="post">
+							<input type="text" class="form-control" placeholder="Cari Berdasarkan Nomor Pesanan" name="">
+						</form>
+						</td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -51,6 +55,7 @@
 					</tr>
 					<tr>
 						<th>No.</th>
+						<th>No.Pesanan</th>
 						<th>Kode Vertifikasi</th>
 						<th>Nama Pelanggan</th>
 						<th>Status</th>
@@ -64,6 +69,7 @@
 					?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<td><?php echo $isi->no_pesanan; ?></td>
 						<td><?php echo $isi->kode_vertifikasi; ?></td>
 						<td><?php echo $isi->nama_pelanggan; ?></td>
 						<td><?php echo $isi->status; ?></td>

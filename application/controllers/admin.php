@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('form','url','download');
 		$this->load->library('upload');
 		$this->load->model('mod');
-		if($this->session->userdata('status') != "login"){
+		if($this->session->userdata('status')!='login'){
 			redirect('login/index');
 		}
 	}

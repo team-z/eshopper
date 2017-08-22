@@ -45,23 +45,6 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-5">
-				<h1 align="right">Pengiriman</h1><br>
-				<form>
-					<div class="form-group">
-						<input type="text" class="form-control" name="">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" name="">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" name="">
-					</div>
-					<div class="form-group">
-						<textarea>Masukkan Alamat</textarea>
-					</div>
-				</form>
-			</div>
 		</div>
 	</div>
 </body>

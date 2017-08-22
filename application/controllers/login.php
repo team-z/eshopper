@@ -23,8 +23,6 @@ class Login extends CI_Controller {
 		$cek = $this->mod->cek_login("admin",$where)->result();
 
 		if($cek > 0){
- 			
-
 			$data_session = array(
 				'id_admin' => $cek[0]->id_admin,
 				'nama_lengkap' => $cek[0]->nama_lengkap,
@@ -41,12 +39,8 @@ class Login extends CI_Controller {
 				);
  			
 			$this->session->set_userdata($data_session);
- 
-			redirect('admin');
- 
-		}else{
-			redirect('login/index');
 		}
+			redirect('admin');
 	}
  
 	function logout(){

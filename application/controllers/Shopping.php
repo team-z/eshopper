@@ -7,6 +7,7 @@ class Shopping extends CI_Controller {
 		parent::__construct();
 		//load model
 		$this->load->model('billing_model');
+		$this->load->model('mod');
         $this->load->library('cart');
 	}
 
@@ -87,12 +88,27 @@ class Shopping extends CI_Controller {
 		}
 		redirect('shopping/cart');        
 	}	
-        function billing_view(){
+    function billing_view(){
                 // Load "billing_view".
-		$this->load->view('public/checkout');
+        $data['provinsi']=$this->billing_model->provinsi();
+		$this->load->view('public/checkout',$data);
         }
+    function ambil_data(){
+		$modul=$this->input->post('modul');
+		$id=$this->input->post('id');
+		if($modul=="kabupaten"){
+			echo $this->billing_model->kabupaten($id);
+		}
+		else if($modul=="kecamatan"){
+			echo $this->billing_model->kecamatan($id);
+
+		}
+		else if($modul=="kelurahan"){
+			echo $this->billing_model->kelurahan($id);
+		}
+	}
         
-        	public function save_order()
+    public function save_order()
 	{
           // This will store all values which inserted  from user.
 		$rand = rand(17823,21563);
@@ -101,7 +117,7 @@ class Shopping extends CI_Controller {
 			'nama_pelanggan' 	=> $this->input->post('nama'),
 			'no_pesanan'		=> $this->input->post('no_pesanan'),
 			'email_pelanggan' 	=> $this->input->post('email'),
-			'no_rekening' 			=> $this->input->post('no_rek'),
+			'no_rekening' 		=> $this->input->post('no_rek'),
 			'no_hp' 			=> $this->input->post('no_hp'),
 			'bank'				=> $this->input->post('bank'),
 			'tanggal_transaksi'	=> $date,
@@ -112,6 +128,14 @@ class Shopping extends CI_Controller {
 		$cust_id = $this->billing_model->insert_customer($customer);
 		if ($cart = $this->cart->contents()):
 			foreach ($cart as $item):
+
+		//fetching barang
+		$where = array('id_barang' => $item['id']);
+		$row = $this->mod->detaildata('barang',$where)->result();
+		$stok = $row[0]->qty - $item['qty'];
+		$where1 = array('id_barang' => $item['id']);
+		$object = array('qty' => $stok );
+		$this->mod->updatedata('barang',$where1,$object);
 				$order_detail = array(
 					'id_transaksi' 		=> $cust_id,
 					'nama_barang' 	=> $item['name'],
@@ -120,17 +144,37 @@ class Shopping extends CI_Controller {
 					'tanggal_transaksi' => date("Y-m-d")
 				);		
 
-                            // Insert product imformation with order detail, store in cart also store in database. 
+                // Insert product imformation with order detail, store in cart also store in database. 
                 
 		    $this->billing_model->insert_order($order_detail);
 			endforeach;
 		endif;
-	      
-                // After storing all imformation in database load "billing_success".
-                redirect('shopping/verify');
+		//konversi id lokasi menjadi nama
+		$w1 = array('id' => $this->input->post('provinsi'));
+		$row_prov = $this->mod->detaildata('provinces',$w1)->result();
+		$w2 = array('id' => $this->input->post('kabupaten'));
+		$row_kab = $this->mod->detaildata('regencies',$w2)->result();
+		$w3 = array('id' => $this->input->post('kecamatan'));
+		$row_kec = $this->mod->detaildata('districts',$w3)->result();
+		$w4 = array('id' => $this->input->post('kelurahan'));
+		$row_kel = $this->mod->detaildata('villages',$w4)->result();
+		//insert data pengiriman
+		$object = array('id_transaksi' => $cust_id ,
+						'provinsi' => $row_prov[0]->name ,
+						'kabupaten_kota' => $row_kab[0]->name ,
+						'kecamatan' => $row_kec[0]->name ,
+						'kelurahan' => $row_kel[0]->name ,
+						'kodepos' => $this->input->post('kodepos') ,
+						'alamat_lengkap' => $this->input->post('alamat') ,
+						'tanggal' => $date );
+		$this->mod->tambahdata('pengiriman',$object);
+		redirect('shopping/verify');
 	}
 	public function verify()
 	{
+			$this->cart->destroy();
+		
+                 // This will show cancle data in cart.
 		$this->load->view('public/verify');
 	}
 	public function verifyAction()
@@ -138,5 +182,37 @@ class Shopping extends CI_Controller {
 		$where = array('kode_vertifikasi' => $this->input->post('kode'));
 		$data['user'] = $this->billing_model->select('transaksi',$where)->result();
 		$this->load->view('public/shipping', $data);
+	}
+	public function login()
+	{
+		$this->load->view('public/login');
+	}
+	public function proseslogin()
+	{
+		$where = array('email' => $this->input->post('user') ,
+						'password' => $this->input->post('pwd') );
+		$cek = $this->billing_model->cek_login('user',$where)->result();
+		if ($cek>0) {
+			$data_session = array(
+				'id' => $cek[0]->id,
+				'nama' => $cek[0]->nama,
+				'email' => $username,
+				'password' => $password,
+				'nama_user' => $cek[0]->nama_user,
+				'no_telp' => $cek[0]->no_telp,
+				'no_rek' => $cek[0]->no_rek,
+				'bank' => $cek[0]->bank,
+				'alamat' => $cek[0]->alamat,
+				'status' => "login"
+				);
+ 			
+			$this->session->set_userdata($data_session);
+			redirect('shopping/index');
+		}
+	}
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('shopping/index');
 	}
 }

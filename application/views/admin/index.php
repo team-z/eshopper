@@ -15,20 +15,24 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="panel panel-default panel-fill">
-							<div class="panel-body">
+							<a href="<?php echo base_url('index.php/admin/viewbarang'); ?>">
+								<div class="panel-body">
 								<span class="text-size-22"><i class="fa fa-archive space-right-10"></i>Barang : <?php $this->db->from('barang');
 									echo $this->db->count_all_results(); ?></span> 
 							</div>
+							</a>
 						</div>
 					</div>
 
 					<div class="col-md-3">
 						<div class="panel panel-info panel-fill">
-							<div class="panel-body">
-								<span class="text-size-22"><i class="fa fa-credit-card fa-list-alt space-right-10"></i>Transaksi : <?php $this->db->from('transaksi');
-												echo $this->db->count_all_results(); ?></span>
-									<!--<p class="break-top-10 text-size-16"></p>-->
-							</div>
+							<a href="<?php echo base_url('index.php/admin2/viewtransaksi'); ?>">
+								<div class="panel-body">
+									<span class="text-size-22"><i class="fa fa-credit-card fa-list-alt space-right-10"></i>Transaksi : <?php $this->db->from('transaksi');
+													echo $this->db->count_all_results(); ?></span>
+										<!--<p class="break-top-10 text-size-16"></p>-->
+								</div>
+							</a>
 						</div>
 					</div>
 
@@ -36,8 +40,8 @@
 						<div class="panel panel-warning panel-fill">
 							<div class="panel-body">
 								<span class="text-size-22"><i class="fa fa-fw fa-truck space-right-10"></i>Pengiriman : <?php $this->db->from('pengiriman');
-									echo $this->db->count_all_results(); ?></span>
-									<!--<p class="break-top-10 text-size-16"></p>-->
+										echo $this->db->count_all_results(); ?></span>
+										<!--<p class="break-top-10 text-size-16"></p>-->
 							</div>
 						</div>
 					</div>

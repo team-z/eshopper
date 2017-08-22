@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 			);
 		$cek = $this->mod->cek_login("admin",$where)->result();
 
-		if($cek > 0){
+		if(count($cek) == 1){
  			
 
 			$data_session = array(

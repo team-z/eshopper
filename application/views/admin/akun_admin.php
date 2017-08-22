@@ -14,7 +14,7 @@
 				<?php foreach ($admin as $key) {?>
 				<div class="col-md-4">
 					<img id="preview" src="<?php $image = $key->image; if ($image == "") {
-		                                  echo base_url('uploads/f11.jpg');
+		                                  echo base_url('uploads/personal.jpg');
 		                              } else {
 		                                  echo base_url('uploads/'.$image);
 		                              } ?>" height="200" width="200" class="img-circle" alt="User Image"/>

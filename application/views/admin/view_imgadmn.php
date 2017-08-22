@@ -19,9 +19,9 @@
 						<?php echo form_open_multipart('admin/update_imgadmn'); ?>
 							<input type="hidden" name="id_admin" value="<?php echo $this->session->userdata('id_admin'); ?>">
 							<?php foreach ($img as $key) {?>
-
+							<input type="hidden" name="image" value="<?php echo $key->image; ?>">
 							<img id="preview" src="<?php $image = $key->image; if ($image == "") {
-				                                  echo base_url('uploads/f11.jpg');
+				                                  echo base_url('uploads/personal.jpg');
 				                              } else {
 				                                  echo base_url('uploads/'.$image);
 				                              } ?>" height="200" width="200" class="img-circle" alt="User Image"/>

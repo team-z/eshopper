@@ -15,7 +15,7 @@
 						<div class="collapse navbar-collapse" id="menu">
 							<ul class="nav navbar-nav navbar-right">
 								<li>
-									<a href="#">
+									<a href="<?php echo base_url('index.php/opsi_pengaturan/view'); ?>">
 										<span class="fa-stack">
 											<i class="fa fa-circle fa-stack-2x"></i>
 											<i class="fa fa-cog fa-stack-1x"></i>
@@ -23,7 +23,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('index.php/login/logout'); ?>">
+									<a href="<?php echo base_url('index.php/login/logout'); ?>" onclick="return confirm ('Apakah anda yakin ini keluar ?');"title="Exi">
 										<span class="fa-stack">
 											<i class="fa fa-circle fa-stack-2x"></i>
 											<i class="fa fa-power-off fa-stack-1x"></i>

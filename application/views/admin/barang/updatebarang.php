@@ -17,7 +17,7 @@
 					<div class="form-group">
 					<?php foreach ($data as $key) {?>
 						<img id="preview" src="<?php if ($key->image == "") {
-		                                   echo base_url('uploads/me.PNG');
+		                                   echo base_url('uploads/barang.jpg');
 		                               } else {
 		                                   echo base_url('uploads/'.$key->image);
 		                               } ?>" height="200" width="200" class="img-circle" alt="User Image"/>

@@ -21,8 +21,7 @@ class Login extends CI_Controller {
 			'password' => $password
 			);
 		$cek = $this->mod->cek_login("admin",$where)->result();
-
-		if($cek > 0){
+		if(count($cek) == 1){
 			$data_session = array(
 				'id_admin' => $cek[0]->id_admin,
 				'nama_lengkap' => $cek[0]->nama_lengkap,

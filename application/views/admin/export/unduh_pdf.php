@@ -21,24 +21,22 @@ $pdf->SetLineWidth(0);
 $pdf->Ln();
 
 $pdf->SetFont('times','B',8);
-$pdf->Cell(2,1,"Id Transaksi",1,0,"C");
-$pdf->Cell(6,1,"Nama Pelanggan",1,0,"C");
-$pdf->Cell(4,1,"Email Pelanggan",1,0,"C");
-$pdf->Cell(3,1,"No.Hp",1,0,"C");
-$pdf->Cell(2,1,"Total Beli",1,0,"C");
-$pdf->Cell(3,1,"No.Rekening",1,0,"C");
-$pdf->Cell(3,1,"Bank",1,0,"C");
-$pdf->Cell(3,1,"Tanggal Transaksi",1,0,"C");
+$pdf->Cell(2,1,"Id Transaksi",1,0,"R");
+$pdf->Cell(6,1,"Nama Pelanggan",1,0,"R");
+$pdf->Cell(4,1,"Email Pelanggan",1,0,"R");
+$pdf->Cell(3,1,"No.Hp",1,0,"R");
+$pdf->Cell(3,1,"No.Rekening",1,0,"R");
+$pdf->Cell(3,1,"Bank",1,0,"R");
+$pdf->Cell(3,1,"Tanggal Transaksi",1,0,"R");
 
 $pdf->Ln();
 
-	foreach ($transaksi as $key) {
+	foreach ($thn as $key) {
 		
 		$pdf->Cell(2,1,$key->id_transaksi,1,0,"R");
 		$pdf->Cell(6,1,$key->nama_pelanggan,1,0,"R");
 		$pdf->Cell(4,1,$key->email_pelanggan,1,0,"R");
 		$pdf->Cell(3,1,$key->no_hp,1,0,"R");
-		$pdf->Cell(2,1,number_format($key->total_harga,2,',','.'),1,0,"R");
 		$pdf->Cell(3,1,$key->no_rekening,1,0,"R");
 		$pdf->Cell(3,1,$key->bank,1,0,"R");
 		$pdf->Cell(3,1,$key->tanggal_transaksi,1,0,"R");

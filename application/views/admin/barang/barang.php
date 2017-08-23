@@ -14,6 +14,16 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<td colspan="3">
+							<form action="<?php echo base_url('index.php/admin/cari_barang'); ?>" method="GET">
+								<div class="input-group">
+							      <input type="text" name="key" class="form-control">
+							      <span class="input-group-btn">
+							        <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+							      </span>
+							    </div>
+							</form>
+						</td>
 						<td>
 							<div class="form-group">
 								<a href="<?php echo base_url('index.php/admin/tambahbarang'); ?>" class="btn btn-primary"><span class="fa fa-plus-square"></span> Tambah Barang</a>
@@ -24,9 +34,6 @@
 								<a href="#" data-toggle="modal" data-target="#kategori" class="btn btn-default"><span class="fa fa-plus-square"></span> Tambah Kategori</a>
 							</div>
 						</td>
-						<td>&nbsp</td>
-						<td>&nbsp</td>
-						<td>&nbsp</td>
 						<td>
 							<div class="row">	
 							<div class="form-group">
@@ -52,7 +59,7 @@
 			                        						<a href="<?php echo base_url('index.php/admin/unduh_excel'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
 			                        					</div>
 			                        					<div class="col-md-6">
-			                        						<a href="<?php echo base_url('index.php/admin/unduh_pdf'); ?>" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
+			                        						<a href="<?php echo base_url('index.php/admin/unduh_pdf'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
 			                        					</div>
 		                        					</div>
 		                        				</div>
@@ -68,12 +75,21 @@
 						<th>Nama Barang</th>
 						<th>Kategori</th>
 						<th>Harga</th>
+						<th>Stok</th>
 						<th>Suplier</th>
 						<th>Opsi</th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php
+				if (empty($barang)) {
+				?>
+					<tr>
+						<td colspan="7">data tidak ditemukan</td>
+					</tr>
+				<?php
+				}
+				
 				$no=$this->uri->segment('3') + 1; 
 				foreach ($barang as $isi) {
 				?>
@@ -82,6 +98,7 @@
 						<td><?php echo $isi->nama_barang; ?></td>
 						<td><?php echo $isi->kategori; ?></td>
 						<td>Rp.<?php echo number_format($isi->harga_barang,2,'.',','); ?> ,-</td>
+						<td><?php echo $isi->qty; ?></td>
 						<td><?php echo $isi->suplier; ?></td>
 						<td>
 							<a href="<?php echo base_url('index.php/admin/edit/').$isi->id_barang; ?>" class="btn btn-default"><span></span> Detail</a>

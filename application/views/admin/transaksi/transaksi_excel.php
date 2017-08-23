@@ -8,6 +8,7 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 	<title></title>
 </head>
 <body>
+<h3><center>Transaksi</center></h3><br>
 	<table border="1">
 		<thead>
 			<tr>			
@@ -18,6 +19,12 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 				<th>Total Beli</th>
 				<th>No. Rekening</th>
 				<th>Bank</th>
+				<th>Provinsi</th>
+				<th>Kabupaten/Kota</th>
+				<th>Kecamatan</th>
+				<th>Kelurahan</th>
+				<th>Kode Pos</th>
+				<th>Alamat Lengkap Pengiriman</th>
 				<th>Tanggal Transaksi</th>
 			</tr>
 		</thead>
@@ -25,14 +32,20 @@ header("Content-Disposition: attachment; filename=transaksi.xls");
 		<?php foreach ($transaksi as $i) {
 		?>
 			<tr>
-				<td><?= $i->id_transaksi ?></td>
-				<td><?= $i->nama_pelanggan ?></td>
-				<td><?= $i->email_pelanggan ?></td>
-				<td><?= $i->no_hp ?></td>
-				<td>Rp <?= number_format($i->total_harga,2,',','.') ?>,-</td>
-				<td><?= $i->no_rekening ?></td>
-				<td><?= $i->bank ?></td>
-				<td><?= $i->tanggal_transaksi ?></td>
+				<td align="right"><?= $i->id_transaksi ?></td>
+				<td align="right"><?= $i->nama_pelanggan ?></td>
+				<td align="right"><?= $i->email_pelanggan ?></td>
+				<td align="right"><?= $i->no_hp ?></td>
+				<td align="right">Rp <?= number_format($i->total_harga,2,',','.') ?>,-</td>
+				<td align="right"><?= $i->no_rekening ?></td>
+				<td align="right"><?= $i->bank ?></td>
+				<td align="right"><?= $i->provinsi ?></td>
+				<td align="right"><?= $i->kabupaten_kota?></td>
+				<td align="right"><?= $i->kecamatan?></td>
+				<td align="right"><?= $i->kelurahan ?></td>
+				<td align="right"><?= $i->kodepos ?></td>
+				<td align="right"><?= $i->alamat_lengkap?></td>
+				<td align="right"><?= $i->tanggal_transaksi ?></td>
 			</tr>
 		<?php } ?>
 		</tbody>

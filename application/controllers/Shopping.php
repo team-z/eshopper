@@ -168,7 +168,13 @@ class Shopping extends CI_Controller {
 						'alamat_lengkap' => $this->input->post('alamat') ,
 						'tanggal' => $date );
 		$this->mod->tambahdata('pengiriman',$object);
-		redirect('shopping/verify');
+		$toko = $this->mod->tampil('toko')->result();
+		$ongkir = array('kota_asal' => $toko[0]->lokasi_sekarang ,
+						'kabupaten' => $row_kab[0]->name ,
+						'kecamatan' => $row_kec[0]->name ,
+						'kelurahan' => $row_kel[0]->name );
+		$dat['ongkir'] = $this->mod->detaildata('lokasi', $ongkir)->result();
+		$this->load->view('public/total', $dat);
 	}
 	public function verify()
 	{

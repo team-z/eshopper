@@ -35,7 +35,7 @@ class Mod extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
-		function cek_login($table,$where){		
+	public function cek_login($table,$where){		
 		return $this->db->get_where($table,$where);
 	}
 
@@ -44,9 +44,21 @@ class Mod extends CI_Model {
 		return $query = $this->db->get($table,$number,$offset)->result();
 	}
 
+	public function data_cari($table,$number,$offset,$search)
+	{
+		$this->db->or_like($search);
+		return $query = $this->db->get($table,$number,$offset)->result();
+	}
+
 	public function jumlah_data($table)
 	{
 		return $this->db->get($table)->num_rows();
+	}
+
+	public function jumlah_data_cari($table,$search)
+	{
+		$this->db->or_like($search);
+		return $query = $this->db->get($table)->num_rows();
 	}
 
 	public function php_excelmodel($filename)

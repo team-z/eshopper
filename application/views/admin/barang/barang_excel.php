@@ -16,12 +16,11 @@ header("Content-Disposition: attachment; filename=barang.xls");
 				<th>nama_barang</th>
 				<th>kategori</th>
 				<th>qty</th>
-				<th>harga_barang</th>
-				<th>discount</th>
+				<th>harga_barang(Rp.)</th>
+				<th>discount(%)</th>
 				<th>spesifikasi</th>
 				<th>suplier</th>
 				<th>alamat_suplier</th>
-				<th>image</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,16 +28,15 @@ header("Content-Disposition: attachment; filename=barang.xls");
 			foreach ($barang as $isi) {
 			?>
 			<tr>	
-				<td><?php echo $isi->id_barang; ?></td>
-				<td><?php echo $isi->nama_barang; ?></td>
-				<td><?php echo $isi->kategori; ?></td>
-				<td><?php echo $isi->qty; ?></td>
-				<td><?php echo $isi->harga_barang; ?></td>
-				<td><?php echo $isi->discount; ?></td>
-				<td><?php echo $isi->spesifikasi; ?></td>
-				<td><?php echo $isi->suplier; ?></td>
-				<td><?php echo $isi->alamat_suplier; ?></td>
-				<td><img src="<?php echo base_url('uploads/'.$isi->image); ?>" height="100" width="100" alt="User Image"></td>
+				<td align="right"><?php echo $isi->id_barang; ?></td>
+				<td align="right"><?php echo $isi->nama_barang; ?></td>
+				<td align="right"><?php echo $isi->kategori; ?></td>
+				<td align="right"><?php echo $isi->qty; ?></td>
+				<td align="right"><?php echo number_format($isi->harga_barang,2,',','.'); ?></td>
+				<td align="right"><?php echo $isi->discount; ?></td>
+				<td align="right"><?php echo $isi->spesifikasi; ?></td>
+				<td align="right"><?php echo $isi->suplier; ?></td>
+				<td align="right"><?php echo $isi->alamat_suplier; ?></td>
 			</tr>
 			<?php } ?>
 		</tbody>

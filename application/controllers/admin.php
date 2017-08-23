@@ -73,6 +73,54 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/barang/barang', $data);
 	}
 
+	public function cari_barang()
+	{
+		$this->load->database();
+
+		$key = $this->input->get('key');
+
+		$search = array('nama_barang' => $key,
+						'kategori' => $key,
+						'qty' => $key);
+
+		$jumlah_data = $this->mod->jumlah_data_cari('barang', $search);
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('index.php/admin/viewbarang');
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 10;
+
+		$from = $this->uri->segment(3);
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+ 
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+ 
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+ 
+        $config['prev_link'] = '&larr; Prev';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+ 
+        $config['cur_tag_open'] = '<li class="current"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+ 
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);		
+		$data['barang'] = $this->mod->data_cari('barang',$config['per_page'],$from,$search);
+		//$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/barang/barang', $data);
+	}
+
 	public function viewimport()
 	{
 		$data['barang'] = $this->mod->tampil('barang')->result();
@@ -107,11 +155,15 @@ class Admin extends CI_Controller {
 
 	public function update_image()
 	{
+		$image = $this->input->post('image');
+
+		unlink('./uploads/'.$image);
+		
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']  = '5000';
-		$config['max_width']  = '6000';
-		$config['max_height']  = '2048';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '6144';
+		$config['max_height']  = '6144';
 		
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
@@ -124,6 +176,7 @@ class Admin extends CI_Controller {
 		}
 
 		$id_barang = $this->input->post('id_barang');
+
 		$where = array('id_barang' => $id_barang );
 
 		$object = array('image' => $gambar);
@@ -283,11 +336,15 @@ class Admin extends CI_Controller {
 
 	public function update_imgadmn()
 	{
+		$img = $this->input->post('image');
+
+		unlink('./uploads/'.$img);
+
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']  = '5000';
-		$config['max_width']  = '6000';
-		$config['max_height']  = '2048';
+		$config['max_size']  = '100000';
+		$config['max_width']  = '6144';
+		$config['max_height']  = '6144';
 		
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);

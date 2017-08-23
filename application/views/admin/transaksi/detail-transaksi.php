@@ -100,7 +100,14 @@
 						<tbody>
 						<?php 
 						$total =0;
-						$query = $this->db->query("SELECT * FROM pesanan WHERE id_transaksi='$kode_vertifikasi'")->result();
+						$where = array('pesanan.id_transaksi' => $kode_vertifikasi );
+
+						$this->db->select('*');
+						$this->db->from('pesanan');
+						$this->db->join('pengiriman', 'pesanan.id_transaksi = pengiriman.id_transaksi');
+						$this->db->where($where);
+						$query = $this->db->get()->result();
+						//$query = $this->db->query("SELECT * FROM pesanan WHERE id_transaksi='$kode_vertifikasi'")->result();
 						foreach ($query as $lue) {
 						?>
 							<tr>
@@ -108,12 +115,18 @@
 								<td><?php echo $lue->qty_pesanan; ?></td>
 								<td>Rp <?php echo number_format($lue->total_harga,2,',','.'); ?>,-</td>
 							</tr>
-						<?php $total += $lue->total_harga; } ?>
+						<?php $total += $lue->total_harga;
+							  $tot_hasil = $total + $lue->biaya;
+						} ?>
 						</tbody>
 						<footer>
 							<tr>
+								<td colspan="2" align="center">Ongkir</td>
+								<td>Rp <?php echo number_format($lue->biaya); ?></td>
+							</tr>
+							<tr>
 								<td colspan="2" align="center">Sub Total</td>
-								<td>Rp <?php echo number_format($total,2,',','.'); ?>,-</td>
+								<td>Rp <?php echo number_format($tot_hasil,2,',','.'); ?>,-</td>
 							</tr>
 						</footer>
 					</table>

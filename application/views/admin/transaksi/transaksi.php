@@ -25,7 +25,6 @@
 							</form>
 						</td>
 						<td></td>
-						<td></td>
 						<td>
 							<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
 								
@@ -55,6 +54,13 @@
 		                                 </div>
 		                            </div>
 		                        </div>
+						</td>
+						<td>
+							<div class="row">
+								<div class="form-group">
+									<a href="<?php echo base_url('index.php/admin2/hapus_semua'); ?>" class="btn btn-danger"  onclick="return confirm ('Anda yakin ini menghapus semua data ini ?');"title="Hapus"><span class="fa fa-trash-o"></span> Hapus Semua</a>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -124,26 +130,34 @@
 																	</th>
 																</tr>
 																<tr>
-																	<th colspan="2">
+																	<th colspan="1">
 																		<div class="form-group">
 																			<label for="user">Kecamatan</label>
 																			<input type="text" class="form-control" name="kecamatan" value="<?php echo $isi->kecamatan; ?>" readonly>
+																		</div>
+																	</th>
+																	<th>
+																		<div class="form-group">
+																			<label for="user">Kelurahan</label>
+																			<input type="text" class="form-control" name="kelurahan" value="<?php echo $isi->kelurahan; ?>" readonly>
 																		</div>
 																	</th>
 																</tr>
 																<tr>
 																	<th colspan="1">
 																		<div class="form-group">
-																			<label for="user">Kelurahan</label>
-																			<input type="text" class="form-control" name="kelurahan" value="<?php echo $isi->kelurahan; ?>" readonly>
-																		</div>
-																	</th>
-																	<th>
-																		<div class="form-group">
 																			<label for="user">Kode Pos</label>
 																			<input type="text" class="form-control" name="kode_pos" value="<?php echo $isi->kodepos; ?>" readonly>
 																		</div>
 																	</th>
+																	<th>
+																		<div class="form-group">
+																			<label for="user">Ongkir</label>
+																			<input type="text" class="form-control" name="ongkir" value="Rp <?php echo number_format($isi->biaya,2,',','.'); ?>,-">
+																		</div>
+																	</th>
+																</tr>
+																<tr>
 																</tr>
 																<tr>
 																	<th colspan="2">

@@ -178,7 +178,7 @@
 		        data: [
 		        		<?php
                         $query = mysqli_query($link,"SELECT nama from kategori");
-                     
+                     	
                         while ($row = mysqli_fetch_array($query)) {
                             $barang = $row['nama'];
                          

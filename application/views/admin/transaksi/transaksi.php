@@ -57,6 +57,8 @@
 						</td>
 						<td>
 							<div class="row">
+
+							
 								<div class="form-group">
 									<a href="<?php echo base_url('index.php/admin2/hapus_semua'); ?>" class="btn btn-danger"  onclick="return confirm ('Anda yakin ini menghapus semua data ini ?');"title="Hapus"><span class="fa fa-trash-o"></span> Hapus Semua</a>
 								</div>

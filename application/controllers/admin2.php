@@ -148,7 +148,6 @@ class Admin2 extends CI_Controller {
 	public function hapus_semua()
 	{
 		$this->db->query("DELETE FROM transaksi");
-
 		$this->db->query("DELETE FROM pengiriman");
 
 		redirect('admin2/viewtransaksi');

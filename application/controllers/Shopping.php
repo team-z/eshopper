@@ -24,20 +24,43 @@ class Shopping extends CI_Controller {
     	$data['kategori']=$this->db->get('kategori')->result();	
 		$this->load->view('public/shop', $data);
 	}
+
+	public function detail($id)
+	{
+		$where = array('id_barang' => $id);
+		$data['barang'] = $this->mod->detaildata('barang',$where)->result();
+		$this->load->view('public/detail',$data);
+
+	}
+
 	public function cart()
 	{
 		$this->load->view('public/cart');
 	}
 	
+	public function addd()
+	{
+		if ($this->input->post('qty')>30) {
+			echo "kenek";
+		}else{
+			
+			
+		}
+	}
 	
 	 function add()
 	{
               // Set array for send data.
-		$insert_data = array(
+		$where = array('id_barang' => $this->input->post('id'));
+		$brg = $this->mod->detaildata('barang',$where)->result();
+		if ($this->input->post('qty')>$brg[0]->qty) {
+			redirect('shopping/detail/'.$this->input->post('id'));
+		}else {
+			$insert_data = array(
 			'id' => $this->input->post('id'),
 			'name' => $this->input->post('name'),
 			'price' => $this->input->post('price'),
-			'qty' => 1
+			'qty' => $this->input->post('qty')
 		);		
 
                  // This function add items into cart.
@@ -45,6 +68,8 @@ class Shopping extends CI_Controller {
 	      
                 // This will show insert data in cart.
 		redirect('shopping/cart');
+		}
+		
 	     }
 	
 		function remove($rowid) {
@@ -158,6 +183,15 @@ class Shopping extends CI_Controller {
 		$row_kec = $this->mod->detaildata('districts',$w3)->result();
 		$w4 = array('id' => $this->input->post('kelurahan'));
 		$row_kel = $this->mod->detaildata('villages',$w4)->result();
+		//fetching data toko
+		$toko = $this->mod->tampil('toko')->result();
+		//letak pencarian biaya ongkir
+		$ongkir = array('kota_asal' => $toko[0]->lokasi_sekarang ,
+						'kabupaten' => $row_kab[0]->name ,
+						'kecamatan' => $row_kec[0]->name ,
+						'kelurahan' => $row_kel[0]->name );
+		//fetching data lokasi
+		$row_ong = $this->mod->detaildata('lokasi', $ongkir)->result();
 		//insert data pengiriman
 		$object = array('id_transaksi' => $cust_id ,
 						'provinsi' => $row_prov[0]->name ,
@@ -165,15 +199,13 @@ class Shopping extends CI_Controller {
 						'kecamatan' => $row_kec[0]->name ,
 						'kelurahan' => $row_kel[0]->name ,
 						'kodepos' => $this->input->post('kodepos') ,
+						'biaya' => $row_ong[0]->biaya ,
 						'alamat_lengkap' => $this->input->post('alamat') ,
 						'tanggal' => $date );
 		$this->mod->tambahdata('pengiriman',$object);
-		$toko = $this->mod->tampil('toko')->result();
-		$ongkir = array('kota_asal' => $toko[0]->lokasi_sekarang ,
-						'kabupaten' => $row_kab[0]->name ,
-						'kecamatan' => $row_kec[0]->name ,
-						'kelurahan' => $row_kel[0]->name );
-		$dat['ongkir'] = $this->mod->detaildata('lokasi', $ongkir)->result();
+		//pencarian data pengiriman
+		$wer = array('id_transaksi' => $cust_id);
+		$dat['ongkir'] = $this->mod->detaildata('pengiriman',$wer)->result();
 		$this->load->view('public/total', $dat);
 	}
 	public function verify()

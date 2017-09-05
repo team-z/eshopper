@@ -1,3 +1,24 @@
-.body1{
-	background-color: red ; 
+@font-face{
+            font-family: 'Coneria Script Demo';
+            src: url('Demo_ConeriaScript.ttf');
+        }
+.judul{
+            color: orange;
+            font-size: 35px;
+            font-family: 'Coneria Script Demo' ;
+      }
+.btn-inv{
+	border:none;
+	background-color: rgba(0,0,0,0);
+	color: orange;
+	font-size: 18px;
+	letter-spacing: 4px;
+	font-weight: bolder;
+	-webkit-transition: all 0.2s ease-out;
+}
+.btn-inv:hover{
+	-webkit-transition: all 0.2s ease-in;
+	border-radius: 20px;
+	background-color: orange;
+	color: white;
 }

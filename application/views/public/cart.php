@@ -16,7 +16,7 @@
         </script>
 </head>
 <body>
-<header id="header"><!--header-->
+	<header id="header"><!--header-->
 		<!--/header_top-->
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
@@ -59,7 +59,6 @@
                     echo form_open('shopping/update_cart');
                     $grand_total = 0;
                     $i = 1;
-
                     foreach ($cart as $item){
                         //   echo form_hidden('cart[' . $item['id'] . '][id]', $item['id']);
                         //  Will produce the following output.

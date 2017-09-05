@@ -18,7 +18,7 @@
               <?php include "sidebar.php"; ?>
               <div class="col-sm-9 padding-right">
               	<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
+						<h2 class="title text-center">Products</h2>
 						<?php
 							foreach ($products as $key) {
 						?>
@@ -29,31 +29,13 @@
 										<img src="<?php echo base_url('uploads/'.$key->image) ; ?>" class="img-circle" height="250" width="150">
 										<h2>Rp <?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 										<p><?php echo $key->nama_barang ; ?></p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Beli</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rp <?php echo number_format($key->harga_barang,2,',','.'); ?></h2>
 											<p><?php echo $key->nama_barang ; ?></p>
-											<?php
-							echo form_open('shopping/add');
-							echo form_hidden('id', $key->id_barang);
-                        	echo form_hidden('name', $key->nama_barang);
-                        	echo form_hidden('price', $key->harga_barang);
-                        	
-						?>
-										<?php
-                        $btn = array(
-                            'class' => 'btn btn-default add-to-cart',
-                            'value' => 'Add to Cart',
-                            'name' => 'action'
-                        );
-                        
-                        // Submit Button.
-                        echo form_submit($btn);
-                        echo form_close();
-                        ?>
-											
+											<a href="<?php echo base_url("index.php/shopping/detail/").$key->id_barang; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i> Beli</a>
 										</div>
 									</div>
 								</div>

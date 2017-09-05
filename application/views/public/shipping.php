@@ -11,6 +11,25 @@
 	    <?php include "header-middle.php"; ?>
 		<!--/header-bottom-->
 		<?php include "header-bottom.php"; ?>
+		<script type="text/javascript">
+			var input = document.getElementById('input-rupiah');
+				input.addEventListener('onchage', function(e)
+			{
+	var 	number_string = bilangan.replace(/[^,\d]/g, '').toString(),
+		split	= number_string.split(','),
+		sisa 	= split[0].length % 3,
+		rupiah 	= split[0].substr(0, sisa),
+		ribuan 	= split[0].substr(sisa).match(/\d{1,3}/gi);
+		
+	if (ribuan) {
+		separator = sisa ? '.' : '';
+		rupiah += separator + ribuan.join('.');
+	}
+	
+	rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+	return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+});
+		</script>
 	</header>
 	<div class="container">
 		<div class="row">
@@ -57,7 +76,9 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($order as $o) {
+					<?php 
+					$total = 0;
+					foreach ($order as $o) {
 						$dat = $this->db->get('pengiriman')->result();
 					?>
 						<tr>
@@ -66,7 +87,6 @@
 							<td>Rp. <?php echo number_format($o->total_harga,2,',','.'); ?> ,-</td>
 						</tr>
 						<?php
-						$total = 0;
 						$total += $o->total_harga;
 						$ongkir = $total + $dat[0]->biaya;
 						 } ?>

@@ -278,6 +278,14 @@ class Admin extends CI_Controller {
 	public function hapus($id_barang)
 	{
 		$where = array('id_barang' => $id_barang );
+
+		$tampil = $this->mod->detaildata('barang', $where)->result();
+
+		foreach ($tampil as $le) {
+			$gambar = $le->image;
+		}
+		unlink('./uploads/'.$gambar);
+
 		$this->mod->hapusdata('barang',$where);
 		redirect('admin/viewbarang');
 	}

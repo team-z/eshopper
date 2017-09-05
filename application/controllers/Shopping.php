@@ -14,7 +14,7 @@ class Shopping extends CI_Controller {
 	public function index()
 	{	
         $this->load->library('pagination');
-    	$config['base_url'] = 'http://127.0.0.1/eshop/index.php/shopping/index/';
+    	$config['base_url'] = 'http://127.0.0.1/eshopper/index.php/shopping/index/';
     	$config['total_rows'] = $this->db->get('barang')->num_rows();
     	$config['per_page'] = 6;
     	$config['num_links'] = 3;

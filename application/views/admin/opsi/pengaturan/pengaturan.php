@@ -31,7 +31,7 @@
 								<form action="<?php echo base_url('index.php/opsi_pengaturan/input_profile'); ?>" method="POST">
 									<div class="form-group">
 										<label for="">Nama Toko</label>
-										<input type="text" name="nama_toko" class="form-control input-lg" placeholder="masukkan Nama Toko Anda">
+										<input type="text" name="nama_toko" class="form-control input-lg" placeholder="masukkan Nama Toko Anda" size="15" maxlength="20">
 									</div>
 									<div class="row">
 										<div class="form-group">

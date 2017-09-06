@@ -172,6 +172,13 @@ class Admin2 extends CI_Controller {
 		$data['transaksi'] = $this->db->get()->result();
 		$this->load->view('admin/transaksi/transaksi_pdf.php', $data);
 	}
+
+	public function cari_grafik()
+	{
+		$data['tahun'] = $this->input->get('key');
+		
+		$this->load->view('admin/index', $data);
+	}
 }
 
 /* End of file admin2.php */

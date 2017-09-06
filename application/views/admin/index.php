@@ -54,6 +54,16 @@
 					<section class="panel panel-primary">
 		                <header class="panel-heading">
 		                    <h4>Grafik Penjualan</h4>
+		                    <form action="<?php echo base_url('index.php/admin2/cari_grafik'); ?>" method="GET">
+			                	<div class="form-group">
+			                		<div class="input-group">
+								      <input type="text" name="key" class="form-control" placeholder="cari grafik berdasarkan Tahun">
+								      <span class="input-group-btn">
+								        <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
+								      </span>
+								    </div>
+			                	</div>
+		                    </form>
 		                </header>
 		                <div class="panel-body">
 		        	        <canvas id="linechart" width="600" height="300"></canvas>
@@ -114,7 +124,13 @@
 	<script src="<?php echo base_url('assets/js/plugin/chart.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/plugin/highcharts.js'); ?>"></script>
 	<script type="text/javascript">
-	<?php include "grafik.php";?>
+	<?php
+	if ($tahun==NULL) {
+		include "grafik.php";
+	} else{
+		include "cari_grafik.php";
+	}
+	?>
     $(function() {
 	                "use strict";
 	                //BAR CHART

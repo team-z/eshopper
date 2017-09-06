@@ -18,7 +18,7 @@
 						<input type="hidden" name="id" value="<?php echo $lue->id; ?>">
 							<div class="form-group">
 								<label for="">Nama Toko</label>
-								<input type="text" name="nama_toko" class="form-control input-lg" placeholder="masukkan Nama Toko Anda" value="<?php echo $lue->nama_toko; ?>">
+								<input type="text" name="nama_toko" class="form-control input-lg" placeholder="masukkan Nama Toko Anda" value="<?php echo $lue->nama_toko; ?>" size="15" maxlength="20">
 							</div>
 							<div class="row">
 								<div class="form-group">

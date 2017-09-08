@@ -32,6 +32,14 @@ class Shopping extends CI_Controller {
 		$this->load->view('public/detail',$data);
 
 	}
+	public function daftar()
+	{
+		$object = array('nama_user' => $this->input->post('name') ,
+		                'email' => $this->input->post('email')  ,
+		                'password' => $this->input->post('password'));
+		$this->mod->tambahdata('user',$object);
+		redirect('shopping/login');
+	}
 
 	public function cart()
 	{

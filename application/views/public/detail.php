@@ -30,7 +30,7 @@
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo $b->nama_barang ; ?></h2>
-								<p>ID Barang: <?php echo $b->id_barang ?></p>
+								<p>ID Barang: <?php echo $b->id_barang; ?></p>
 								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span>Rp <?php echo number_format($b->harga_barang,2,',','.'); ?></span><br>

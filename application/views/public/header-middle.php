@@ -13,7 +13,6 @@
 							}else{?>
 								<li><a href="#"><i class="fa fa-user"></i> Halo , <?php echo $this->session->userdata('nama_user'); ?> !</a></li>
 							<?php } ?>
-								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="<?php echo base_url('index.php/shopping/verify'); ?>"><i class="fa fa-check"></i> Konfirmasi Pembayaran</a></li>
 								<li><a href="<?php echo base_url('index.php/shopping/cart'); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 							<?php if ($this->session->userdata('status')!='login') { ?>

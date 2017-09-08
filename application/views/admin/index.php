@@ -52,24 +52,24 @@
 			<div class="row">
 				<div class="col-md-8">
 					<section class="panel panel-primary">
-		                <header class="panel-heading">
-		                    <h4>Grafik Penjualan</h4>
-		                    <form action="<?php echo base_url('index.php/admin2/cari_grafik'); ?>" method="GET">
-			                	<div class="form-group">
-			                		<div class="input-group">
+						<header class="panel-heading">
+			                <h4>Grafik Penjualan</h4>
+			                <form action="<?php echo base_url('index.php/admin2/cari_grafik'); ?>" method="GET">
+				              	<div class="form-group">
+				               		<div class="input-group">
 								      <input type="text" name="key" class="form-control" placeholder="cari grafik berdasarkan Tahun">
 								      <span class="input-group-btn">
 								        <button class="btn btn-default" type="submit"><span class="fa fa-search"></span></button>
 								      </span>
 								    </div>
-			                	</div>
-		                    </form>
-		                </header>
-		                <div class="panel-body">
-		        	        <canvas id="linechart" width="600" height="300"></canvas>
-		        	        Menampilkan data banyaknya transaksi per-Bulan
-		                </div>
-		            </section>
+				               	</div>
+			                </form>
+			            </header>
+			            <div class="panel-body">
+			        	    <canvas id="linechart" width="600" height="300"></canvas>
+			        	    Menampilkan data banyaknya transaksi per-Bulan
+			            </div>
+					</section>
 		            <section class="panel panel-primary">
 			            <header class="panel-heading">
 			                <h4>Grafik Barang</h4>

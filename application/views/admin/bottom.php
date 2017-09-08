@@ -1,6 +1,7 @@
 
 <script src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/theme-floyd.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 <script>
 	$("#modal-normal > .panel-body > button").each(function(){
 		var cls = $(this).data('class');

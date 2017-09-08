@@ -16,7 +16,8 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/index');
+		$data['tahun'] = "";
+		$this->load->view('admin/index', $data);
 	}
 
 	public function tambahbarang()
@@ -133,13 +134,7 @@ class Admin extends CI_Controller {
 		$up['data'] = $this->mod->detaildata('barang', $where)->result();
 		$this->load->view('admin/barang/updatebarang', $up);
 	}
-
-	public function unduh_excel()
-	{
-		$data['barang'] = $this->mod->tampil('barang')->result();
-		$this->load->view('admin/barang/barang_excel.php', $data);
-	}
-
+	
 	public function unduh_pdf()
 	{
 		$data['barang'] = $this->mod->tampil('barang')->result();
@@ -293,7 +288,7 @@ class Admin extends CI_Controller {
 	public function buat_template()
 	{
 		//$this->load->view('admin/barang/tabel-barang');
-		force_download('./uploads/Barang.xls',NULL);
+		force_download('./uploads/template.xlsx',NULL);
 	}
 
 	public function profil_admin($id_admin)

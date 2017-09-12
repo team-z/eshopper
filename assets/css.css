@@ -18,7 +18,6 @@
 }
 .btn-inv:hover{
 	-webkit-transition: all 0.2s ease-in;
-	border-radius: 20px;
 	background-color: orange;
 	color: white;
 }

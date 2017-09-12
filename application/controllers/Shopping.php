@@ -16,7 +16,7 @@ class Shopping extends CI_Controller {
         $this->load->library('pagination');
     	$config['base_url'] = 'http://127.0.0.1/eshopper/index.php/shopping/index/';
     	$config['total_rows'] = $this->db->get('barang')->num_rows();
-    	$config['per_page'] = 6;
+    	$config['per_page'] = 12;
     	$config['num_links'] = 3;
     	include "paging_style.php";
     	$this->pagination->initialize($config);
@@ -59,7 +59,6 @@ class Shopping extends CI_Controller {
 	 function add()
 	{
               // Set array for send data.
-		$where = array('id_barang' => $this->input->post('id'));
 		$brg = $this->mod->detaildata('barang',$where)->result();
 		if ($this->input->post('qty')>$brg[0]->qty) {
 			redirect('shopping/detail/'.$this->input->post('id'));
@@ -69,6 +68,29 @@ class Shopping extends CI_Controller {
 			'name' => $this->input->post('name'),
 			'price' => $this->input->post('price'),
 			'qty' => $this->input->post('qty')
+		);		
+
+                 // This function add items into cart.
+		$this->cart->insert($insert_data);
+	      
+                // This will show insert data in cart.
+		redirect('shopping/cart');
+		}
+		
+	     }
+	  function add_direct()
+	{
+              // Set array for send data.
+		$where = array('id_barang' => $this->input->post('id'));
+		$brg = $this->mod->detaildata('barang',$where)->result();
+		if ($this->input->post('qty')>$brg[0]->qty) {
+			redirect('shopping/detail/'.$this->input->post('id'));
+		}else {
+			$insert_data = array(
+			'id' => $this->input->post('id'),
+			'name' => $this->input->post('name'),
+			'price' => $this->input->post('price'),
+			'qty' => 1
 		);		
 
                  // This function add items into cart.

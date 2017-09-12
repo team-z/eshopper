@@ -57,7 +57,7 @@
 								<p><b>Condition:</b> Good</p>
 								<p><b>Brand:</b> <?php echo $b->suplier ; ?></p>
 								<p><b>Spesifikasi :</b><br>
-									<textarea class="form-control" readonly=""><?php echo $b->spesifikasi; ?></textarea></p>
+									<textarea readonly="" style="height: 100px;background-color: white;"><?php echo $b->spesifikasi; ?></textarea></p>
 								<?php } ?>
 							</div><!--/product-information-->
 						</div>

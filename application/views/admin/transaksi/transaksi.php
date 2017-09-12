@@ -43,7 +43,7 @@
 		                        				<div class="row">
 		                        					<div class="form-group">
 			                        					<div class="col-md-6">
-			                        						<a href="<?php echo base_url('index.php/admin2/unduh_excel'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
+			                        						<a href="<?php /*echo base_url('index.php/admin2/unduh_excel');*/ echo base_url('index.php/php_excel/export_1'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
 			                        					</div>
 			                        					<div class="col-md-6">
 			                        						<a href="<?php echo base_url('index.php/admin2/unduh_pdf'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
@@ -155,7 +155,7 @@
 																	<th>
 																		<div class="form-group">
 																			<label for="user">Ongkir</label>
-																			<input type="text" class="form-control" name="ongkir" value="Rp <?php echo number_format($isi->biaya,2,',','.'); ?>,-">
+																			<input type="text" class="form-control" name="ongkir" value="Rp <?php echo number_format($isi->biaya,2,',','.'); ?>,-" readonly>
 																		</div>
 																	</th>
 																</tr>

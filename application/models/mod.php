@@ -90,8 +90,7 @@ class Mod extends CI_Model {
                     "discount"      => $worksheet[$i]["F"],
                     "spesifikasi"   => $worksheet[$i]["G"],
                     "suplier"       => $worksheet[$i]["H"],
-                    "alamat_suplier"=> $worksheet[$i]["I"],
-                    "image"         => $worksheet[$i]["J"] 
+                    "alamat_suplier"=> $worksheet[$i]["I"] 
                    );
 
             $this->db->insert('barang', $ins);

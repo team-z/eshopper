@@ -56,7 +56,7 @@
 		                        				<div class="row">
 		                        					<div class="form-group">
 			                        					<div class="col-md-6">
-			                        						<a href="<?php echo base_url('index.php/admin/unduh_excel'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
+			                        						<a href="<?php /*echo base_url('index.php/admin/unduh_excel');*/ echo base_url('index.php/php_excel/export'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
 			                        					</div>
 			                        					<div class="col-md-6">
 			                        						<a href="<?php echo base_url('index.php/admin/unduh_pdf'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>

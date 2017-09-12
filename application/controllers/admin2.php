@@ -152,17 +152,7 @@ class Admin2 extends CI_Controller {
 
 		redirect('admin2/viewtransaksi');
 	}
-
-	public function unduh_excel()
-	{
-		$this->db->select('*');
-		$this->db->from('transaksi');
-		$this->db->join('pesanan', 'transaksi.id_transaksi = pesanan.id_transaksi');
-		$this->db->join('pengiriman', 'transaksi.id_transaksi = pengiriman.id_transaksi');
-		$data['transaksi'] = $this->db->get()->result();
-		$this->load->view('admin/transaksi/transaksi_excel.php', $data);
-	}
-
+	
 	public function unduh_pdf()
 	{
 		//$data['transaksi'] = $this->mod->tampil('transaksi')->result();

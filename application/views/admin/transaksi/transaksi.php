@@ -155,7 +155,7 @@
 																	<th>
 																		<div class="form-group">
 																			<label for="user">Ongkir</label>
-																			<input type="text" class="form-control" name="ongkir" value="Rp <?php echo number_format($isi->biaya,2,',','.'); ?>,-" readonly>
+																			<input type="text" class="form-control" name="ongkir" value="Rp.<?php echo number_format($isi->biaya,2,'.',','); ?> ,-" readonly>
 																		</div>
 																	</th>
 																</tr>

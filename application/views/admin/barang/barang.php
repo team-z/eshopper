@@ -59,7 +59,7 @@
 			                        						<a href="<?php /*echo base_url('index.php/admin/unduh_excel');*/ echo base_url('index.php/php_excel/export'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
 			                        					</div>
 			                        					<div class="col-md-6">
-			                        						<a href="<?php echo base_url('index.php/admin/unduh_pdf'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
+			                        						<a href="<?php echo base_url('index.php/admin/unduh_berpage'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
 			                        					</div>
 		                        					</div>
 		                        				</div>

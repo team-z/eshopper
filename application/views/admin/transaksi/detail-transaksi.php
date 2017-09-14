@@ -122,7 +122,7 @@
 						<footer>
 							<tr>
 								<td colspan="2" align="center">Ongkir</td>
-								<td>Rp <?php echo number_format($lue->biaya); ?></td>
+								<td>Rp <?php echo number_format($lue->biaya,2,',','.'); ?></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="center">Sub Total</td>
@@ -132,7 +132,7 @@
 					</table>
 				</div>
 			</div>
-			<a href="<?php echo base_url('index.php/admin2/viewtransaksi'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Keluar</a>
+			<a href="<?php echo base_url('index.php/admin2/viewtransaksi'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Kembali</a>
 		</div>
 	</div>
 	<?php $this->load->view('admin/bottom.php'); ?>

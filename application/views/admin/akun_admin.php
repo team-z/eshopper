@@ -92,7 +92,7 @@
 						</thead>
 					</table>
 					<button type="" class="btn btn-primary"><span class="fa fa-floppy-o"></span> Simpan Perubahan</button>
-					<a href="<?php echo base_url('index.php/admin/index'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Keluar</a>
+					<a href="<?php echo base_url('index.php/admin/index'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Kembali</a>
 				</div>
 				</form>
 			</div>

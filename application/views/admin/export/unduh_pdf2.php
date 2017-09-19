@@ -33,7 +33,7 @@ $pdf->Cell(3.5,1,"Tanggal Pengiriman",1,0,"C");
 
 $pdf->Ln();
 
-	foreach ($thn as $key) {
+	foreach ($pengiriman as $key) {
 		$pdf->Cell(2,1,$key->id_transaksi,1,0,"R");
 		$pdf->Cell(6,1,$key->nama_pelanggan,1,0,"R");
 		$pdf->Cell(4,1,$key->provinsi,1,0,"R");

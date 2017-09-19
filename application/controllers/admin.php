@@ -134,6 +134,21 @@ class Admin extends CI_Controller {
 		$up['data'] = $this->mod->detaildata('barang', $where)->result();
 		$this->load->view('admin/barang/updatebarang', $up);
 	}
+
+	public function unduh_berpage()
+	{
+		$this->load->database();
+		$jumlah_data = $this->mod->jumlah_data('barang');
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('index.php/admin/viewbarang');
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 10;
+
+		$from = $this->uri->segment(3);
+
+		$data['barang'] = $this->mod->data('barang',$config['per_page'],$from);
+		$this->load->view('admin/barang/barang_pdf.php', $data);
+	}
 	
 	public function unduh_pdf()
 	{

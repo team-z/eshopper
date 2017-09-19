@@ -93,7 +93,7 @@
 							</table>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary" onclick="return confirm ('Simpan Data ini ?');"title="Simpan"><i class="fa fa-floppy-o"></i> Simpan</button>
-								<a href="<?php echo base_url('index.php/admin/viewbarang'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Keluar</a>
+								<a href="<?php echo base_url('index.php/admin/viewbarang'); ?>" class="btn btn-danger"><span class="fa fa-undo"></span> Kembali</a>
 							</div>
 						</div>
 

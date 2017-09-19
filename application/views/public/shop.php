@@ -21,8 +21,8 @@
 						<?php
 							foreach ($products as $key) {
 						?>
-						<form method="post" action="<?php echo base_url('index.php/shopping/add_direct'); ?>">
 						<div class="col-sm-4">
+						<form method="post" action="<?php echo base_url('index.php/shopping/add_direct'); ?>">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">

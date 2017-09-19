@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2017 at 10:48 AM
+-- Generation Time: Sep 12, 2017 at 11:29 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -45,7 +45,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama_lengkap`, `nama_user`, `password`, `tempat_lahir`, `tanggal_lahir`, `alamat_lengkap`, `no_hp`, `no_telepon`, `email`, `image`) VALUES
-(2, 'admin', 'dika', 'dika', 'admin', '2017-06-13', 'admin', 812345678, 'admin', 'admin@gmail.com', '18047317_B.png');
+(2, 'admin', 'dika', 'dika', 'admin', '2017-06-13', 'admin', 812345678, 'admin', 'admin@gmail.com', '1036422_1337856628909_full.png');
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ INSERT INTO `admin` (`id_admin`, `nama_lengkap`, `nama_user`, `password`, `tempa
 
 CREATE TABLE `barang` (
   `id_barang` int(9) NOT NULL,
-  `nama_barang` varchar(50) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
   `kategori` varchar(20) NOT NULL,
   `qty` int(11) NOT NULL,
   `harga_barang` varchar(25) NOT NULL,
@@ -71,8 +71,13 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `kategori`, `qty`, `harga_barang`, `discount`, `spesifikasi`, `suplier`, `alamat_suplier`, `image`) VALUES
-(18, 'Topeng Starwars', 'Topeng', 77, '50000', 0, 'topeng asli', 'topeng.co', 'unknown', '18047317_B.png'),
-(20, 'Kaneki T-Shirt', 'Baju', 89, '200000', 0, 'Kain Katun , Ukuran (S,M,L,XL)', 'TailedFox', 'Jakarta', 'print_all_over_me_3_t-shirt_0000000p-kaneki-t-shirt.png');
+(20, 'Kaneki T-Shirt', 'tshirt', 992, '200000', 0, 'Kain Katun , Ukuran (S,M,L,XL)', 'TailedFox', 'Jakarta', 'print_all_over_me_3_t-shirt_0000000p-kaneki-t-shirt.png'),
+(21, 'Jaket Hoody One Piece', 'Jaket', 49, '225000', 0, 'Kain Fleece , Warna Putih , Hoody biasa', 'TailedFox', 'Jl.Mahakam no.30 Jaksel', 'Harajuku-Men-s-font-b-Hoodies-b-font-ONE-PIECE-Anime-Sweatshirt-Women-Tops-font-b.jpg'),
+(22, 'Jaket Hoody Naruto', 'Jaket', 30, '250000', 0, 'Kain Fleece  , Model semi jubah', 'TailedFox', 'Jl.Mahakam no.30 Jaksel', 'jaket.jpg'),
+(33, 'Blue velvet arlogi watch', 'jam tangan', 20, '150', 50, 'unik banget', 'bisma armada aka', 'jakarta', '21.jpg'),
+(34, 'karma alt', 'jam tangan', 10, '150', 0, 'keren mantap bagus', 'aji kusuma', 'syarif', 'jam_tangan_pria_murah.jpg'),
+(37, 'Nine Tails T-Shirt', 'tshirt', 1000, '100000', 0, 'content', 'TailedFox', 'surabaya', 'Kaos-Anime-Yondaime-Minato-KYM01.jpg'),
+(38, 'Itachi Black T-Shirt', 'singlet', 1221, '300000', 0, 'Kain Katun Black', 'TailedFox', 'surabaya', '8816531_dda4fd3d-6d3a-467f-b0bb-33351cef96d1.jpg');
 
 -- --------------------------------------------------------
 
@@ -7205,10 +7210,12 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`) VALUES
-(1, 'Celana'),
-(2, 'Baju'),
-(3, 'Topeng'),
-(4, 'Tas');
+(1, 'celana'),
+(3, 'topeng'),
+(4, 'tas'),
+(5, 'jaket'),
+(6, 'tshirt'),
+(7, 'singlet');
 
 -- --------------------------------------------------------
 
@@ -7218,7 +7225,6 @@ INSERT INTO `kategori` (`id`, `nama`) VALUES
 
 CREATE TABLE `lokasi` (
   `id` int(11) NOT NULL,
-  `provinsi` varchar(255) NOT NULL,
   `kota_asal` varchar(100) NOT NULL,
   `kabupaten` varchar(100) NOT NULL,
   `kecamatan` varchar(200) NOT NULL,
@@ -7230,9 +7236,10 @@ CREATE TABLE `lokasi` (
 -- Dumping data for table `lokasi`
 --
 
-INSERT INTO `lokasi` (`id`, `provinsi`, `kota_asal`, `kabupaten`, `kecamatan`, `kelurahan`, `biaya`) VALUES
-(3, '35', 'jember', 'JEMBER', 'PATRANG', 'GEBANG', 5000),
-(4, '35', 'jember', 'JEMBER', 'BANGSALSARI', 'PETUNG', 7000);
+INSERT INTO `lokasi` (`id`, `kota_asal`, `kabupaten`, `kecamatan`, `kelurahan`, `biaya`) VALUES
+(3, 'jember', 'JEMBER', 'PATRANG', 'GEBANG', 5000),
+(4, 'jember', 'JEMBER', 'BANGSALSARI', 'PETUNG', 7000),
+(5, 'jember', 'JEMBER', 'KALIWATES', 'KALIWATES', 10000);
 
 -- --------------------------------------------------------
 
@@ -7259,7 +7266,16 @@ CREATE TABLE `pengiriman` (
 INSERT INTO `pengiriman` (`id_transaksi`, `provinsi`, `kabupaten_kota`, `kecamatan`, `kelurahan`, `kodepos`, `alamat_lengkap`, `biaya`, `tanggal`) VALUES
 (27, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 61254, 'bungur', '5000', '2017-08-22'),
 (28, 'JAWA TIMUR', 'LUMAJANG', 'YOSOWILANGUN', 'TUNJUNGREJO', 61254, 'yoso', '13000', '2017-08-22'),
-(33, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 61254, 'Jalan Bungur', '5000', '2017-08-23');
+(33, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 61254, 'Jalan Bungur', '5000', '2017-08-23'),
+(35, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 62345, 'Jalan Bungur', '5000', '2017-08-25'),
+(38, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 6123, 'bungur 130', '5000', '2017-08-25'),
+(42, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 61254, 'bungur', '5000', '2017-08-25'),
+(51, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 61254, 'bungur', '5000', '2017-08-25'),
+(52, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 66666, 'bngur 130', '5000', '2017-08-28'),
+(53, 'JAWA TIMUR', 'JEMBER', 'BANGSALSARI', 'PETUNG', 61254, 'jl.bangsal no 23', '7000', '2017-09-05'),
+(55, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 66666, 'bungur', '5000', '2017-09-06'),
+(56, 'JAWA TIMUR', 'JEMBER', 'KALIWATES', 'KALIWATES', 61212, 'Alamat Lengkappp', '10000', '2017-09-11'),
+(57, 'JAWA TIMUR', 'JEMBER', 'PATRANG', 'GEBANG', 65141, 'Jl. Nusantara GF-7A Jember', '5000', '2017-09-12');
 
 -- --------------------------------------------------------
 
@@ -7324,7 +7340,51 @@ INSERT INTO `pesanan` (`id_pesanan`, `id_transaksi`, `nama_barang`, `qty_pesanan
 (44, 36, 'Topeng Starwars', 1, 50000, '2017-08-23'),
 (45, 37, 'Topeng Starwars', 1, 50000, '2017-08-23'),
 (46, 38, 'Topeng Starwars', 1, 50000, '2017-08-23'),
-(47, 39, 'Topeng Starwars', 1, 50000, '2017-08-23');
+(47, 39, 'Topeng Starwars', 1, 50000, '2017-08-23'),
+(48, 34, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(49, 34, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(50, 35, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(51, 35, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(52, 36, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(53, 36, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(54, 37, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(55, 37, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(56, 38, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(57, 38, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(58, 39, 'Topeng Starwars', 10, 500000, '2017-08-25'),
+(59, 39, 'Kaneki T-Shirt', 1, 200000, '2017-08-25'),
+(60, 40, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(61, 40, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(62, 41, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(63, 41, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(64, 42, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(65, 42, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(66, 43, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(67, 43, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(68, 44, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(69, 44, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(70, 45, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(71, 45, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(72, 46, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(73, 46, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(74, 47, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(75, 47, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(76, 48, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(77, 48, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(78, 49, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(79, 49, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(80, 50, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(81, 50, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(82, 51, 'Topeng Starwars', 9, 450000, '2017-08-25'),
+(83, 51, 'Kaneki T-Shirt', 10, 2000000, '2017-08-25'),
+(84, 52, 'Kaneki T-Shirt', 1, 200000, '2017-08-28'),
+(85, 52, 'Jaket Hoody Naruto', 10, 2500000, '2017-08-28'),
+(86, 53, 'Jaket Hoody Naruto', 10, 2500000, '2017-09-05'),
+(87, 54, 'Kaneki T-Shirt', 1, 200000, '2017-09-06'),
+(88, 55, 'Kaneki T-Shirt', 1, 200000, '2017-09-06'),
+(89, 56, 'Itachi Black T-Shirt', 12, 3600000, '2017-09-11'),
+(90, 56, 'Kaneki T-Shirt', 5, 1000000, '2017-09-11'),
+(91, 57, 'Jaket Hoody One Piece', 1, 225000, '2017-09-12');
 
 -- --------------------------------------------------------
 
@@ -7932,7 +7992,7 @@ CREATE TABLE `toko` (
 --
 
 INSERT INTO `toko` (`id`, `nama_toko`, `wa`, `bbm`, `line`, `instagram`, `facebook`, `lokasi_sekarang`, `alamat_toko`) VALUES
-(1, 'toko enak', '08123456789', '5D54F', 'toko_enak', 'toko_enak', 'toko enak', 'jember', 'Jl.Bungur 130 Desa Gebang Kec.Patrang Kab.Jember');
+(1, 'Distro Anime', '08123456789', '5DFB6A', 'distro_anime', 'distro_anime', 'distro_anime', 'jember', 'Jl.Bungur 130 Desa Gebang Kec.Patrang Kab.Jember');
 
 -- --------------------------------------------------------
 
@@ -7960,7 +8020,18 @@ CREATE TABLE `transaksi` (
 INSERT INTO `transaksi` (`id_transaksi`, `no_pesanan`, `nama_pelanggan`, `email_pelanggan`, `no_hp`, `no_rekening`, `bank`, `kode_vertifikasi`, `status`, `tanggal_transaksi`) VALUES
 (27, '29024964', 'dika', 'dika_ayik@gmail.com', '08123456789', '80267387622', 'BRI', '18607', 'PENDING', '2017-08-22 02:43:26'),
 (28, '45601670', 'yofandi', 'yofandi@gmail.ocm', '08134512456', '80267387622', 'Danamon', '19576', 'PENDING', '2017-08-22 02:46:38'),
-(33, '43264390', 'Deku', 'deku@yahoo.com', '6256719873', '761238791', 'Bank Muamalah', '20442', 'PENDING', '2017-08-23 01:48:10');
+(33, '43264390', 'Deku', 'deku@yahoo.com', '6256719873', '761238791', 'Bank Muamalah', '20442', 'PENDING', '2017-08-23 01:48:10'),
+(34, '10487482', 'Mahardika', '', '08123456789', '80267387622', 'BRI', '19692', 'PENDING', '2017-08-24 21:38:26'),
+(35, '10487482', 'Mahardika', '', '08123456789', '80267387622', 'BRI', '21283', 'PENDING', '2017-08-24 21:45:35'),
+(38, '29082074', 'jncjkdsc', 'dh djs j', 'dnfjsdfsdinfkj', 'ndfkjsdf', 'Bank Muamalah', '20046', 'PENDING', '2017-08-24 21:54:23'),
+(42, '34788843', 'gggg', 'gggg', '000000', '000000', 'BCA', '20317', 'PENDING', '2017-08-24 22:04:07'),
+(51, '68864476', 'kjnjkn', 'nkjnuh', 'uhiun', 'bjkhkj', 'Bank Muamalah', '21349', 'PENDING', '2017-08-24 22:23:32'),
+(52, '23637587', 'Sandi', 'sandi@gmail.com', '0825677865', '8754', 'BCA', '20667', 'PENDING', '2017-08-28 01:57:57'),
+(53, '30114284', 'dika', 'dika_ayik@gmail.com', '08123456789', '92178317612', 'Danamon', '19029', 'PENDING', '2017-09-05 00:30:59'),
+(54, '28320607', 'adi', 'mahardikaari51@yahoo.com', '08123456789', '143-12456-24671', 'BRI', '18718', 'PENDING', '2017-09-06 02:59:34'),
+(55, '50236040', 'Dika', 'mahardikaari51@yahoo.com', '08123456789', '876564657', 'CimbNiaga', '17972', 'PENDING', '2017-09-06 03:02:48'),
+(56, '70161084', 'dika', 'dika@gmail.com', '08123456789', '92178317612', 'CimbNiaga', '18928', 'PENDING', '2017-09-11 00:40:53'),
+(57, '41362839', 'citra darma wida', 'citra.darma.wida@gmail.com', '081230033880', '14131213123131', 'BCA', '19029', 'PENDING', '2017-09-12 01:03:59');
 
 -- --------------------------------------------------------
 
@@ -7985,7 +8056,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `nama_user`, `email`, `password`, `no_hp`, `no_rek`, `bank`, `alamat`) VALUES
-(1, 'Mahardika Ari Pradana', 'dika_fritz', 'dikaayik@gmail.com', 'cempluk123', '08813574654', '09.23.12465.23', 'BRI', 'Jl.Merapi No.23 Desa Dawuhan Lor');
+(1, 'Mahardika Ari Pradana', 'dika_fritz', 'dikaayik@gmail.com', 'cempluk123', '08813574654', '09.23.12465.23', 'BRI', 'Jl.Merapi No.23 Desa Dawuhan Lor'),
+(2, '', 'citra darma ', 'citra.darma.wida@gmail.com', 'admin', '', '', '', ''),
+(3, '', 'tamara', 'tamara@gmail.com', 'password', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -90209,27 +90282,27 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_barang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_pesanan` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT for table `toko`
 --
@@ -90239,12 +90312,12 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_transaksi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --

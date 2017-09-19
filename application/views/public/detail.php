@@ -19,6 +19,7 @@
 					<div class="product-details"><!--product-details-->
 				<?php 
 					foreach ($barang as $b) {
+						$kategori = $b->kategori;
 				?>
 				<form method="post" action="<?php echo base_url('index.php/shopping/add') ?>">
 						<div class="col-sm-5">
@@ -53,11 +54,13 @@
 								<?php	}
 								else{ 
 								?>
+								<p><b>Kategori:</b> <?php echo $b->kategori; ?></p>
 								<p style="color: green ";"><b style="color: black;">Stok :</b> <?php echo $b->qty; ?></p>
 								<p><b>Condition:</b> Good</p>
 								<p><b>Brand:</b> <?php echo $b->suplier ; ?></p>
 								<p><b>Spesifikasi :</b><br>
 									<textarea readonly="" style="height: 100px;background-color: white;"><?php echo $b->spesifikasi; ?></textarea></p>
+								<b><a href="<?php echo base_url('index.php/shopping/') ?>" class="btn btn-default cart"><i class="fa fa-arrow-left fa-stack"></i> Kembali</a></b>
 								<?php } ?>
 							</div><!--/product-information-->
 						</div>
@@ -68,10 +71,64 @@
 						<input type="hidden" name="image" value="<?php echo base_url('uploads/').$b->image; ?>">
 						</form>
 					<?php } ?>
-					</div><!--/product-details-->		
+					</div><!--/product-details-->	
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">Item Yang Sama</h2>
+						
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item active">
+								<?php 
+									$kon = mysqli_connect('localhost','root','','eshopper');
+									$sql = mysqli_query($kon,"SELECT * FROM barang where kategori = '$kategori' LIMIT 3");
+									while($c=mysqli_fetch_array($sql)) {
+								?>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="<?php echo base_url('uploads/').$c['image']; ?>" alt="" style ='height: 180px;width: 150px;' >
+													<h2><?php echo $c['harga_barang']; ?></h2>
+													<p><?php echo $c['nama_barang']; ?></p><a href="<?php echo base_url("index.php/shopping/detail/").$c['id_barang']; ?>" class="btn btn-inv"><i class="fa fa-search"></i> Detail</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<?php } ?>
+								</div>
+								<div class="item">
+								<?php 
+									$kon = mysqli_connect('localhost','root','','eshopper');
+									$sql = mysqli_query($kon,"SELECT * FROM barang where kategori = '$kategori' ORDER BY id_barang DESC LIMIT 3");
+									while($c=mysqli_fetch_array($sql)) {
+								?>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="<?php echo base_url('uploads/').$c['image']; ?>" alt="" style ='height: 180px;width: 150px;' >
+													<h2><?php echo $c['harga_barang']; ?></h2>
+													<p><?php echo $c['nama_barang']; ?></p><a href="<?php echo base_url("index.php/shopping/detail/").$c['id_barang']; ?>" class="btn btn-inv"><i class="fa fa-search"></i> Detail</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<?php } ?>
+								</div>
+							</div>
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>			
+						</div>
+					</div>	
 				</div>
 			</div>
-		</div>
+		</div><br><br>
 		<?php include "footer.php"; ?>
 <?php include "bottom.php"; ?>
 </body>

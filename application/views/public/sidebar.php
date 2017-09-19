@@ -37,6 +37,6 @@
 							</div>
 							</div>
 						<!--/category-products-->
-					<img src="<?php echo base_url('assets/ads/barber.jpg'); ?>" class="img-responsive" alt="">
+					<img src="<?php echo base_url('assets/images/barber.jpg'); ?>" class="img-responsive" alt="">
 					</div>
 				</div>

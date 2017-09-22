@@ -1,48 +1,59 @@
-<?php  
-$this->load->view('fpdf181/fpdf.php');
-
-$pdf= new FPDF('L','cm',array(30,20));
-$pdf->AddPage();
-$pdf->SetFont('Arial','B',15);
-$pdf->MultiCell(29,0.5,'E shopper',0,'C'); 
-$pdf->SetX(3); 
-$pdf->MultiCell(25,0.5,'Loe Pasti Puas',0,'C'); 
-$pdf->SetFont('Arial','B',10); 
-$pdf->SetX(3); 
-$pdf->MultiCell(25,0.5,'MASCITRA.COM',0,'C'); 
-$pdf->SetX(3);
-$pdf->MultiCell(25,0.5,'Jl.Bungur N0.130, Gebang, Kec.Patrang, Kab.Jember',0,'C'); 
-$pdf->SetX(3);
-$pdf->Line(1,3.1,27,3.1); 
-$pdf->SetLineWidth(0.1); 
-$pdf->Line(1,3.2,27,3.2); 
-$pdf->SetLineWidth(0);
-
-$pdf->Ln();
-
-$pdf->SetFont('times','B',8);
-$pdf->Cell(2,1,"Id Transaksi",1,0,"R");
-$pdf->Cell(6,1,"Nama Pelanggan",1,0,"R");
-$pdf->Cell(4,1,"Email Pelanggan",1,0,"R");
-$pdf->Cell(3,1,"No.Hp",1,0,"R");
-$pdf->Cell(3,1,"No.Rekening",1,0,"R");
-$pdf->Cell(3,1,"Bank",1,0,"R");
-$pdf->Cell(3,1,"Tanggal Transaksi",1,0,"R");
-
-$pdf->Ln();
-
-	foreach ($thn as $key) {
-		
-		$pdf->Cell(2,1,$key->id_transaksi,1,0,"R");
-		$pdf->Cell(6,1,$key->nama_pelanggan,1,0,"R");
-		$pdf->Cell(4,1,$key->email_pelanggan,1,0,"R");
-		$pdf->Cell(3,1,$key->no_hp,1,0,"R");
-		$pdf->Cell(3,1,$key->no_rekening,1,0,"R");
-		$pdf->Cell(3,1,$key->bank,1,0,"R");
-		$pdf->Cell(3,1,$key->tanggal_transaksi,1,0,"R");
-
-		$pdf->Ln();
-	}
-
-$pdf->Output('transaksi','I');
-?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	  .table{
+	      border-collapse: collapse;
+	      width: 100%;
+	      margin: 0 auto;
+	  }
+	  .table .th{
+	      border:1px solid #000;
+	      padding: 3px;
+	      font-weight: bold;
+	      text-align: center;
+	  }
+	  .table .td{
+	      border:1px solid #000;
+	      padding: 3px;
+	      vertical-align: top;
+	  }
+	</style>
+</head>
+<body>
+<center>
+	<h1>E-shopper</h1>
+	<b>Loe Pasti Puas</b><br>
+	...............<br>
+	<hr width="100%" height="75"></hr><br>
+</center>
+<table border="1" class="table">
+	<thead>
+		<tr>
+			<th class="table th">Id Transaksi</th>
+			<th class="table th">Nama Pelanggan</th>
+			<th class="table th">Email Pelanggan</th>
+			<th class="table th">No.hp</th>
+			<th class="table th">No.Rekening</th>
+			<th class="table th">Bank</th>
+			<th class="table th">Tanggal Transaksi</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($thn as $isi) {?>
+		<tr>
+			<td class="table td" align="center"><?php echo $isi->id_transaksi; ?></td>
+			<td class="table td"><?php echo $isi->nama_pelanggan; ?></td>
+			<td class="table td"><?php echo $isi->email_pelanggan; ?></td>
+			<td class="table td" align="right"><?php echo $isi->no_hp; ?></td>
+			<td class="table td" align="right"><?php echo $isi->no_rekening; ?></td>
+			<td class="table td" align="center"><?php echo $isi->bank; ?></td>
+			<td class="table td" align="left"><?php echo $isi->tanggal_transaksi; ?></td>
+		</tr>
+		<?php } ?>
+	</tbody>
+</table>
+</body>
+</html>

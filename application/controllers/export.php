@@ -7,7 +7,7 @@ class Export extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('url','form','download');
-		$this->load->library(array('upload','PHPExcel'));
+		$this->load->library(array('upload','PHPExcel','dompdf_gen'));
 		$this->load->model('mod');
 		if($this->session->userdata('status') != "login"){
 			redirect('login/index');
@@ -130,11 +130,33 @@ class Export extends CI_Controller {
 			if ($kategori == 'semua') {
 				$data['barang'] = $this->mod->tampil('barang')->result();
 				$this->load->view('admin/barang/barang_pdf.php', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_barang.pdf", array('Attachment'=>0));
+
 			} else {
 				$where = array('kategori' => $kategori );
 				$data['barang'] = $this->mod->detaildata('barang', $where)->result();
 				
-				$this->load->view('admin/export/unduh_pdf3', $data);
+				$this->load->view('admin/barang/barang_pdf', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_barang.pdf", array('Attachment'=>0));
+
 			}
 			
 		} else{
@@ -154,17 +176,57 @@ class Export extends CI_Controller {
 				$data['thn'] = $this->db->get('transaksi')->result();
 				$this->load->view('admin/export/unduh_pdf', $data);
 
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_transaksi.pdf", array('Attachment'=>0));
+
 			} elseif ($bulan == 'semua' && $tahun != 'semua') {
 				$data['thn'] = $this->db->query("SELECT * FROM transaksi WHERE date_format(tanggal_transaksi, '%Y')='$tahun' ")->result();
 				$this->load->view('admin/export/unduh_pdf', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_transaksi.pdf", array('Attachment'=>0));
 
 			} elseif ($bulan != 'semua' && $tahun == 'semua') {
 				$data['thn'] = $this->db->query("SELECT * FROM transaksi WHERE date_format(tanggal_transaksi, '%m')='$bulan' ")->result();
 				$this->load->view('admin/export/unduh_pdf', $data);
 
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_transaksi.pdf", array('Attachment'=>0));
+
 			} elseif ($bulan != 'semua' && $tahun != 'semua') {
 				$data['thn'] = $this->db->query("SELECT * FROM transaksi WHERE date_format(tanggal_transaksi, '%Y')='$tahun' AND date_format(tanggal_transaksi, '%m')='$bulan' ")->result();
 				$this->load->view('admin/export/unduh_pdf', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_transaksi.pdf", array('Attachment'=>0));
 
 			}
 			
@@ -726,17 +788,57 @@ class Export extends CI_Controller {
 				$data['pengiriman'] = $this->db->get()->result();
 				$this->load->view('admin/export/unduh_pdf2', $data);
 
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_pengiriman.pdf", array('Attachment'=>0)); 
+
 			} elseif ($bulan == 'semua' && $tahun != 'semua') {
 				$data['pengiriman'] = $this->db->query("SELECT a.*, b.* FROM pengiriman as a LEFT JOIN transaksi as b ON a.id_transaksi = b.id_transaksi WHERE date_format(tanggal, '%Y')='$tahun' ")->result();
 				$this->load->view('admin/export/unduh_pdf2', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_pengiriman.pdf", array('Attachment'=>0));
 
 			} elseif ($bulan != 'semua' && $tahun == 'semua') {
 				$data['pengiriman'] = $this->db->query("SELECT a.*, b.* FROM pengiriman as a LEFT JOIN transaksi as b ON a.id_transaksi = b.id_transaksi WHERE date_format(tanggal, '%m')='$bulan' ")->result();
 				$this->load->view('admin/export/unduh_pdf2', $data);
 
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_pengiriman.pdf", array('Attachment'=>0));
+
 			} elseif ($bulan != 'semua' && $tahun != 'semua') {
 				$data['pengiriman'] = $this->db->query("SELECT a.*, b.* FROM pengiriman as a LEFT JOIN transaksi as b ON a.id_transaksi = b.id_transaksi WHERE date_format(tanggal, '%Y')='$tahun' AND date_format(tanggal, '%m')='$bulan' ")->result();
 				$this->load->view('admin/export/unduh_pdf2', $data);
+
+				$paper_size  = 'A4'; //paper size
+		        $orientation = 'landscape'; //tipe format kertas
+		        $html = $this->output->get_output();
+		 
+		        $this->dompdf->set_paper($paper_size, $orientation);
+		        //Convert to PDF
+		        $this->dompdf->load_html($html);
+		        $this->dompdf->render();
+		        $this->dompdf->stream("laporan_pengiriman.pdf", array('Attachment'=>0));
 
 			}
 		} else {

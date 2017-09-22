@@ -30,7 +30,7 @@
 
 							<?php } ?>
 							<button type="submit" class="btn btn-block btn-primary"><span class="fa fa-floppy-o"></span> Simpan Perubahan</button>
-							<a href="<?php echo base_url('index.php/admin/profil_admin/').$this->session->userdata('id_admin'); ?>" class="btn btn-block btn-danger"><span class="fa fa-undo"></span> Keluar</a>
+							<a href="<?php echo base_url('index.php/admin/profil_admin/').$this->session->userdata('id_admin'); ?>" class="btn btn-block btn-danger"><span class="fa fa-undo"></span> Kembali</a>
 						</form>
 					</div>
 				</div>

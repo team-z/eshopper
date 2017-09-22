@@ -1,11 +1,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap/css/bootstrap.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap/css/bootstrap.min.css'); ?>" media="screen">
 	<link rel="stylesheet" href="<?php echo base_url('assets/plugins/fontawesome/css/font-awesome.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/theme-floyd.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/theme-helper.css'); ?>">
 	<link rel="icon" type="image/png" href="<?php echo base_url('assets/image/logo1.png'); ?>">
     <script src="<?php echo base_url('assets/plugins/jquery/jquery-3.1.1.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/plugins/jquery/jquery.PrintArea.js'); ?>"></script>
 	<script>
             function tampilkanPreview(gambar,idpreview){
                 var gb = gambar.files;

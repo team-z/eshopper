@@ -3,6 +3,21 @@
 <head>
 	<?php $this->load->view('admin/top.php'); ?>
 	<title>Transaksi</title>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/css/print.css'); ?>" media="print">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/css/style.css'); ?>" media="screen">
+	<script>
+        (function($) {
+            // fungsi dijalankan setelah seluruh dokumen ditampilkan
+            $(document).ready(function(e) {
+                 
+                // aksi ketika tombol cetak ditekan
+                $("#cetak").bind("click", function(event) {
+                    // cetak data pada area <div id="#data-mahasiswa"></div>
+                    $('#transaksi').printArea();
+                });
+            });
+        }) (jQuery);
+    </script>
 </head>
 <body>
 	<div id="wrapper">
@@ -11,9 +26,20 @@
 			<?php $this->load->view('admin/navigasi.php'); ?>
 
 			<h1><center>Transaksi</center></h1>
+			<div id="transaksi">
+			<div class="title">
+				<center>
+					<b></b> E-shopper<br>
+					Loe Pasti Puas<br>
+					MASCITRA.COM<br>
+					Jl.Bungur N0.130, Gebang, Kec.Patrang, Kab.Jember<br>
+					<hr size="2px" color="black" style="padding-bottom: 10px">
+					<hr size="6px" color="black">
+				</center>
+			</div><br>
 			<table class="table table-striped">
 				<thead>
-					<tr>
+					<tr class="action">
 						<td colspan="3">
 							<form action="<?php echo base_url('index.php/admin2/cari_transaksi'); ?>" method="GET">
 								<div class="input-group">
@@ -26,34 +52,7 @@
 						</td>
 						<td></td>
 						<td>
-							<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="fa fa-arrow-circle-up"></span> Eksport Data</a>	
-								
-		                        <!-- Modal -->
-		                        <div id="myModal" class="modal fade" role="dialog">
-		                        	<div class="modal-dialog">
-		                            <!-- konten modal-->
-		                    			<div class="modal-content">
-		                    				<!-- heading modal -->
-		                                    <div class="modal-header">
-		                    					<button class="close" data-dismiss="modal">&times;</button>
-		                    					<h4 class="modal-title" align="center">Ekspor Data</h4>
-		                                    </div>
-		                                    <!-- body modal -->
-		                                    <div class="modal-body">
-		                        				<div class="row">
-		                        					<div class="form-group">
-			                        					<div class="col-md-6">
-			                        						<a href="<?php /*echo base_url('index.php/admin2/unduh_excel');*/ echo base_url('index.php/php_excel/export_1'); ?>" class="btn btn-success form-control"><span class="fa fa-download"></span> Unduh Versi Excel</a>
-			                        					</div>
-			                        					<div class="col-md-6">
-			                        						<a href="<?php echo base_url('index.php/admin2/unduh_pdf'); ?>" target="_blank" class="btn btn-danger form-control"><span class="fa fa-download"></span> Unduh Versi PDF</a>
-			                        					</div>
-		                        					</div>
-		                        				</div>
-		                                    </div>
-		                                 </div>
-		                            </div>
-		                        </div>
+							<button id="cetak" target="_blank" class="btn btn-warning"><span class="fa fa-file-pdf-o"></span> Cetak PDF</button>
 						</td>
 						<td>
 							<div class="row">
@@ -71,7 +70,7 @@
 						<th>Kode Vertifikasi</th>
 						<th>Nama Pelanggan</th>
 						<th>Status</th>
-						<th>Opsi</th>
+						<th class="action">Opsi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -95,7 +94,7 @@
 						<td><?php echo $isi->kode_vertifikasi; ?></td>
 						<td><?php echo $isi->nama_pelanggan; ?></td>
 						<td><?php echo $isi->status; ?></td>
-						<td>
+						<td class="action">
 							<a href="<?php echo base_url('index.php/admin2/dtltransaksi/').$isi->id_transaksi; ?>" class="btn btn-default"><span></span> Detail</a>
 							<a href="" class="btn btn-info"  data-toggle="modal" data-target="#myModal<?= $no?>"><span class="fa fa-truck"></span> Pengiriman</a>	
 							<!-- Modal -->
@@ -183,6 +182,7 @@
 					<?php  }?>
 				</tbody>
 			</table>
+			</div>
 			<ul class="pagination">
 				<?php echo $this->pagination->create_links(); ?>
 			</ul>

@@ -15,7 +15,7 @@
 						<h2><center>Iklan</center></h2>
 					</div>
 					<div class="panel panel-body">
-					 <a href="<?php echo base_url('index.php/iklan/view_hapus'); ?>" align="left" class="btn btn-default"><span class="fa fa-trash-o"></span> hapus data</a>
+					 <a href="<?php echo base_url('index.php/iklan/view_hapus'); ?>" align="left" class="btn btn-default"><span class="fa fa-trash-o"></span> hapus Iklan</a>
 						<div class="row" align="center">
 							 <section class="content">
 					            <div>

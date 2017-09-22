@@ -35,13 +35,13 @@
 						?>
 							<tr>
 								<td><?php echo $no++; ?></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->gambar1); ?>" height="50" width="50" alt=""/></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->gambar2); ?>" height="50" width="50" alt=""/></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->gambar3); ?>" height="50" width="50" alt=""/><input type="hidden" name="gambar3" value="<?php echo $key->gambar3; ?>"></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->gambar4); ?>" height="50" width="50" alt=""/></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->banner1); ?>" height="50" width="50" alt=""/></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->banner2); ?>" height="50" width="50" alt=""/></td>
-								<td><img src="<?php echo base_url('./uploads/'.$key->banner3); ?>" height="50" width="50" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->gambar1); ?>" height="200" width="200" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->gambar2); ?>" height="200" width="200" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->gambar3); ?>" height="200" width="200" alt=""/><input type="hidden" name="gambar3" value="<?php echo $key->gambar3; ?>"></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->gambar4); ?>" height="200" width="200" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->banner1); ?>" height="200" width="200" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->banner2); ?>" height="200" width="200" alt=""/></td>
+								<td><img src="<?php echo base_url('./uploads/'.$key->banner3); ?>" height="200" width="200" alt=""/></td>
 								<td><a href="<?php echo base_url('index.php/iklan/proses_hapus/'.$key->id_iklan); ?>" class="btn btn-warning" onclick="return confirm ('Hapus gambar ini ?');"title="Hapus" ><span class="fa fa-trash-o"></span> Hapus</a></td>
 							</tr>
 						<?php } ?>

@@ -303,7 +303,7 @@ class Admin extends CI_Controller {
 	public function buat_template()
 	{
 		//$this->load->view('admin/barang/tabel-barang');
-		force_download('./uploads/template.xlsx',NULL);
+		force_download('./assets/images/template.xlsx',NULL);
 	}
 
 	public function profil_admin($id_admin)

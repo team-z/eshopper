@@ -21,9 +21,8 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 	</header>
+	<br>
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -97,13 +96,13 @@
 	   <div class="container">
 	        <div class="row">
 				<div class="col-md-2">
-					<a href="<?php echo base_url('index.php/shopping/index'); ?>" class="btn btn-default btn-block">Lanjut Belanja</a>
+					<a href="<?php echo base_url('index.php/shopping/index'); ?>" class="btn btn-default btn-block">Kembali Berbelanja</a>
 				</div>
 				<div class="col-md-2">
-					<input type="button" class ='btn btn-default btn-block' value="Hapus Keranjang" onclick="clear_cart()">
+					<input type="button" class ='btn btn-danger btn-block' value="Hapus Keranjang" onclick="clear_cart()">
 				</div>
 				<div class="col-md-2">
-					<input type="submit" class ='btn btn-default btn-block' value="Perbarui Keranjang">
+					<input type="submit" class ='btn btn-warning btn-block' value="Perbarui Isi Keranjang">
 				</div>
 			</div>
 		</div>
@@ -119,28 +118,13 @@
 						<ul>
 							<li>Total Harga <span><strong>Rp <?php echo number_format($grand_total, 2,',','.'); ?></strong></span><br>(Harga tidak termasuk ongkir)</li>
 							<li style="background-color: white;padding: 0;">
-							<a class="btn btn-default" href="<?php echo base_url('index.php/shopping/billing_view'); ?>">Checkout</a>
+							<a class="btn btn-warning" href="<?php echo base_url('index.php/shopping/billing_view'); ?>"><i class="glyphicon glyphicon-log-out"></i> Checkout</a>
 							</li>
 						</ul>
 							<?php echo form_close(); ?>
 						</div>
                             <!-- "Place order button" on click send "billing" controller  -->
 					</div>
-				 <div class="col-sm-6">
-				 	<div class="total_area">
-				 		<div class="container">
-				 		Punya Kode Kupon ?<br>
-				 		<form class="form-inline">
-				 			<div class="form-group">
-				 				<input type="text" class="form-control" name="" placeholder="Masukkan Kode Kupon ...">
-				 			</div>
-				 			<div class="form-group">
-				 				<input type="submit" value="Verifikasi" class="form-control" name="">
-				 			</div>
-				 		</form>
-				 		</div>
-				 	</div>
-				 </div>
 				</div>
 			</div>
 		</div>

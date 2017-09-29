@@ -52,10 +52,8 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 	</header>
-
+<br>
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -82,16 +80,16 @@
 									<input type="text" disabled="" value="Nomor Pesanan : <?php echo $rand; ?>" class="form-control" name="">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" name="nama" placeholder="Nama">
+									<input class="form-control" type="text" name="nama" placeholder="Nama" required="">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" name="email" placeholder="Email*">
+									<input class="form-control" type="email" name="email" placeholder="Email*" required="">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" name="no_hp" placeholder="No HP">
+									<input class="form-control" type="text" required="" name="no_hp" placeholder="No HP">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="text" name="no_rek" placeholder="No Rekening*">
+									<input class="form-control" type="text" required="" name="no_rek" placeholder="No Rekening*" max="16">
 								</div>
 								<div class="form-group">
 									<select name="bank" class="form-control">
@@ -115,25 +113,25 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<select class="form-control" name="kabupaten" id="kabupaten-kota">
+									<select class="form-control" name="kabupaten" id="kabupaten-kota" required="">
 										<option value='0'>-- Pilih Kabupaten --</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<select class="form-control" id="kecamatan" name="kecamatan">
+									<select class="form-control" required="" id="kecamatan" name="kecamatan">
 										<option value='0'>-- Pilih Kecamatan --</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<select class="form-control" id="kelurahan-desa" name="kelurahan">
+									<select required="" class="form-control" id="kelurahan-desa" name="kelurahan">
 										<option value='0'>-- Pilih Kelurahan --</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<input type="text" placeholder="Kode Pos*" name="kodepos" class="form-control">
+									<input type="text" required="" placeholder="Kode Pos*" name="kodepos" class="form-control">
 								</div>
 								<div class="form-group">
-									<textarea name="alamat">Alamat Lengkap</textarea>
+									<textarea style="background-color: white;border:1px solid #ccc;" name="alamat" required="">Alamat Lengkap</textarea>
 								</div>
 						</div>
 					</div>

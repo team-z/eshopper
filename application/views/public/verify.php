@@ -9,9 +9,8 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 	</header>
+	<br>
 	<div class="container" style="padding: 4%;">
 	<h1 align="center">Konfirmasi Kode</h1>
 		<form method="post" action="<?php echo base_url('index.php/shopping/verifyAction'); ?>">

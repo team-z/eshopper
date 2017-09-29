@@ -3,7 +3,14 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a class="judul" href="<?php echo base_url('index.php/shopping/index'); ?>"><?php echo $toko[0]->nama_toko ; ?></a>
+
+							<a class="navbar-brand judul" href="<?php echo base_url('index.php/shopping'); ?>">
+                  <span>
+                   <i>
+                   <img src="<?php echo base_url('uploads/logo.jpg'); ?>" style="height: 60px;">
+                   </i>
+                  </span> <?php echo $toko[0]->nama_toko; ?>
+                    </a>
 						</div>
 					</div>
 					<div class="col-sm-8">

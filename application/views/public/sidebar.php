@@ -14,27 +14,15 @@
     				</form><br><br>
     						<h2>Category</h2>
     						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Topswear
-										</a>
-									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="<?php echo base_url('index.php/filtering/carikategori/?key=tshirt') ?>">T-Shirt </a></li>
-											<li><a href="#">Long Sleeve</a></li>
-											<li><a href="<?php echo base_url('index.php/filtering/carikategori/?key=singlet') ?>">Singlet</a></li>
-											<li><a href="<?php echo base_url('index.php/filtering/carikategori/?key=jaket') ?>">Jacket</a></li>
-											<li><a href="<?php echo base_url('index.php/filtering/carikategori/?key=sweater') ?>">Sweater</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
+							<ul>
+								<?php 
+									$link = mysqli_connect('localhost','root','','eshopper');
+									$query = mysqli_query($link,"SELECT * FROM kategori");
+									while ($data = mysqli_fetch_array($query)) {
+								?>
+							    <li><a href="<?php echo base_url('index.php/filtering/carikategori?key=').$data['nama']; ?>" class="btn btn-inv"><?php echo $data['nama']; ?></a></li>
+								<?php }	?>
+							</ul>
 							</div>
 						<!--/category-products-->
 					<img src="<?php echo base_url('assets/images/barber.jpg'); ?>" class="img-responsive" alt="">

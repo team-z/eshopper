@@ -31,3 +31,31 @@
                 }    
             }
         </script>
+        <?php $angka = array("","1","2","3","4","5","6","7"); 
+            for ($i=1; $i <= 7 ; $i++) { ?>
+
+            <script>
+                function tampilkanPreview(gambar,idpreview<?php echo $angka[$i]; ?>){
+                    var gb = gambar.files;
+                    for (var i = 0; i < gb.length; i++){
+                        var gbPreview = gb[i];
+                        var imageType = /image.*/;
+                        var preview=document.getElementById(idpreview<?php echo $angka[$i]; ?>);            
+                        var reader = new FileReader();
+                        
+                        if (gbPreview.type.match(imageType)) {
+                            preview.file = gbPreview;
+                            reader.onload = (function(element) { 
+                                return function(e) { 
+                                    element.src = e.target.result; 
+                                }; 
+                            })(preview);
+                            reader.readAsDataURL(gbPreview);
+                        }else{
+                            alert("file yang anda upload tidak sesuai. Khusus mengunakan image.");
+                        }
+                       
+                    }    
+                }
+            </script>
+        <?php } ?>

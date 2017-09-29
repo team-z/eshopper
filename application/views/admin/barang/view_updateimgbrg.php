@@ -15,7 +15,7 @@
 				<div class="col-md-4">
 					
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<?php echo form_open_multipart('admin/update_image'); ?>
 						<?php foreach ($view as $key) {?>
 							<input type="hidden" name="id_barang" value="<?php echo $key->id_barang; ?>">

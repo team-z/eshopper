@@ -53,7 +53,12 @@
 				<div class="col-md-8">
 					<section class="panel panel-primary">
 						<header class="panel-heading">
-			                <h4>Grafik Penjualan</h4>
+			                <h4>Grafik Penjualan <?php if ($tahun == "") {
+			                	echo date("Y");
+			                } else {
+			                	echo $tahun;
+			                }
+			                 ?></h4>
 			                <form action="<?php echo base_url('index.php/admin2/cari_grafik'); ?>" method="GET">
 				              	<div class="form-group col-md-8">
 				               		<div class="input-group">
@@ -201,7 +206,7 @@
 	            });
 
 	            });
-	            // Chart.defaults.global.responsive = true;
+	             Chart.defaults.global.responsive = true;
 	</script>
 
 	<script type="text/javascript">

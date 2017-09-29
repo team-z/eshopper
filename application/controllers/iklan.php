@@ -139,6 +139,7 @@ class Iklan extends CI_Controller {
 
 	public function proses_hapus($id_iklan)
 	{
+		error_reporting(0);
 		$where = array('id_iklan' => $id_iklan );
 
 		$data_ik = $this->mod->detaildata('iklan', $where)->result();

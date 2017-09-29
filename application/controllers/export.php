@@ -160,7 +160,13 @@ class Export extends CI_Controller {
 			}
 			
 		} else{
-			echo "mohon klik salah satu dari opsi tadi";
+			$data['pesan'] = '';
+			$data['pesan'] .= '<div class="alert alert-default" role="alert">';
+	      	$data['pesan'] .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+	      	$data['pesan'] .= '<strong>Gagal!!!</strong> list tidak boleh kosong.';
+	      	$data['pesan'] .= '</div>';
+	      	$this->load->view('admin/export/view_export', $data);
+			//echo "mohon klik salah satu dari opsi tadi";
 		}
 		
 	}
@@ -492,7 +498,13 @@ class Export extends CI_Controller {
 			}
 			
 		} else {
-			echo "mohon klik salah satu dari opsi tadi";
+			$data['pesan'] = '';
+			$data['pesan'] .= '<div class="alert alert-default" role="alert">';
+	      	$data['pesan'] .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+	      	$data['pesan'] .= '<strong>Gagal!!!</strong> list tidak boleh kosong.';
+	      	$data['pesan'] .= '</div>';
+	      	$this->load->view('admin/export/view_export', $data);
+			//echo "mohon klik salah satu dari opsi tadi";
 		}
 		
 	}
@@ -842,7 +854,13 @@ class Export extends CI_Controller {
 
 			}
 		} else {
-			echo "mohon klik salah satu dari opsi tadi";
+			$data['pesan'] = '';
+			$data['pesan'] .= '<div class="alert alert-default" role="alert">';
+	      	$data['pesan'] .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+	      	$data['pesan'] .= '<strong>Gagal!!!</strong> list tidak boleh kosong.';
+	      	$data['pesan'] .= '</div>';
+	      	$this->load->view('admin/export/view_export', $data);
+			//echo "mohon klik salah satu dari opsi tadi";
 		}
 		
 	}

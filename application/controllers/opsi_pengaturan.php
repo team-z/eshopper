@@ -19,7 +19,7 @@ class Opsi_pengaturan extends CI_Controller {
 
 	public function dashboard()
 	{
-		$this->load->view('admin/index');
+		redirect('admin/index');
 	}
 
 	public function input_profile()

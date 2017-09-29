@@ -1,7 +1,7 @@
 <div id="sidebar">
 			<div id="sidebar-wrapper">
 				<div class="sidebar-title">
-					<span class="text-size-40 text-loose"><?php $data = $this->db->get('toko')->result();
+					<span class="text-size-40"><?php $data = $this->db->get('toko')->result();
 					foreach ($data as $key) {
 					 	echo $key->nama_toko;
 					 } ?></span><br>

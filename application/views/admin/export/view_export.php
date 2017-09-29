@@ -11,6 +11,11 @@
 		<?php $this->load->view('admin/navigasi'); ?>
 		<h3><center>Laporan</center></h3><br>
 		<div class="row">
+			<section class="content">
+			    <div>
+			        <?php echo @$pesan; ?>
+			    </div>
+			</section>
 			<div class="col-md-4">
 				<a href="" class="form-control btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal1"><span class="fa fa-file-pdf-o"></span> Laporan Barang</a>
 

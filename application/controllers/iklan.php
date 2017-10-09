@@ -21,6 +21,7 @@ class Iklan extends CI_Controller {
 
 	public function in_iklan($id)
 	{
+		error_reporting(0);
 		$posisi = $this->input->post('posisi');
 		$gambar = $this->input->post('gambar');
 

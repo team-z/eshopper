@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php $this->load->view('admin/top'); ?>
-	<title></title>
+	<title>Iklan</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -75,6 +75,9 @@
 								</div>
 								</form>
 							</div>
+						</div>
+						<div class="row">
+							- untuk ukuran banner di anjurkan 1280X441px
 						</div>
 					</div>
 				</div>
@@ -153,6 +156,9 @@
 								</form>
 							</div>
 						</div>
+					</div>
+					<div class="row" align="center">
+						untuk ukuran iklan bawah 262.5X200px
 					</div>
 				</div>
 			</div>

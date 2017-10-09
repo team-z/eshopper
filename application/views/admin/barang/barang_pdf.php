@@ -50,7 +50,7 @@
 			<td class="table td"><?php echo $isi->nama_barang; ?></td>
 			<td class="table td"><?php echo $isi->kategori; ?></td>
 			<td class="table td" align="center"><?php echo $isi->qty; ?></td>
-			<td class="table td" align="right"><?php echo number_format($isi->harga_barang,2,',','.'); ?></td>
+			<td class="table td" align="right">Rp.<?php echo number_format($isi->harga_barang,2,',','.'); ?> ,-</td>
 			<td class="table td" align="center"><?php echo $isi->discount; ?></td>
 			<td class="table td"><?php echo $isi->spesifikasi; ?></td>
 			<td class="table td"><?php echo $isi->suplier; ?></td>

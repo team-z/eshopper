@@ -9,9 +9,8 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 	</header>
+	<br>
 	<section>
 		<div class="container">
 			<div class="row">
@@ -48,7 +47,9 @@
 					</div><!--/product-details-->
 			</div>
 		</div>
-	</section>
+	</section><br>
+		<!--/header-bottom-->
+		<?php include "header-bottom.php"; ?>
 	<?php include "footer.php"; ?>
 	<?php include"bottom.php"; ?>
 </body>

@@ -9,8 +9,6 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 		<script type="text/javascript">
 			var input = document.getElementById('input-rupiah');
 				input.addEventListener('onchage', function(e)
@@ -141,6 +139,8 @@
 
 						<?php } ?>
 				</table>
+				<br>
+				<a href="<?php echo base_url('index.php/shopping/sukses/') ?>" class="btn btn-warning btn-lg btn-block" title="">Konfirmasi</a>
 			</div>
 		</div>
 	</div>

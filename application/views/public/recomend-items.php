@@ -36,7 +36,7 @@
 													<img src="<?php echo base_url('uploads/').$b['image']; ?>" alt="" style ='height: 180px;width: 150px;' >
 													<h2><?php echo $b['harga_barang']; ?></h2>
 													<p><?php echo $b['nama_barang']; ?></p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="<?php echo base_url("index.php/shopping/detail/").$b['id_barang']; ?>" class="btn btn-inv"><i class="fa fa-search"></i> Detail</a>
 												</div>
 												
 											</div>

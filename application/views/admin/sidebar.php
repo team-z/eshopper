@@ -26,6 +26,7 @@
 					<li><a href="<?php echo base_url('index.php/admin/index'); ?>"><i class="fa fa-fw fa-star"></i><span>Dashboard</span></a></li>
 					<li><a href="<?php echo base_url('index.php/admin/viewbarang'); ?>"><i class="fa fa-archive fa-font"></i><span>Barang</span></a></li>
 					<li><a href="<?php echo base_url('index.php/admin2/viewtransaksi'); ?>"><i class="fa fa-credit-card fa-list-alt"></i><span>Transaksi</span></a></li>
+					<li><a href="<?php echo base_url('index.php/admin2/view_user'); ?>"><i class="fa fa-user-circle"></i><span>User Pelanggan</span></a></li>
 					<li><a href="<?php echo base_url('index.php/iklan/index'); ?>"><i class="fa fa-television" aria-hidden="true"></i><span>Iklan</span></a></li>
 					<li><a href="<?php echo base_url('index.php/export/index'); ?>"><i class="fa fa-file-pdf-o"></i><span></span> Laporan</a></li>
 				</ul>

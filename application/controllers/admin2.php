@@ -116,11 +116,111 @@ class Admin2 extends CI_Controller {
 		$this->load->view('admin/transaksi/transaksi', $data);
 	}
 
-	public function dtltransaksi($id_transaksi)
+	public function view_user()
 	{
-		$where = array('id_transaksi' => $id_transaksi );
-		$data['kom'] = $this->mod->detaildata('transaksi', $where)->result();
-		$this->load->view('admin/transaksi/detail-transaksi', $data);
+		/*$data['user'] = $this->mod->tampil('user')->result();*/
+		$this->load->database();
+		$jumlah_data = $this->mod->jumlah_data('user');
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('index.php/admin2/view_user');
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 10;
+
+		$from = $this->uri->segment(3);
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+ 
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+ 
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+ 
+        $config['prev_link'] = '&larr; Prev';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+ 
+        $config['cur_tag_open'] = '<li class="current"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+ 
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);		
+		$data['user'] = $this->mod->data('user',$config['per_page'],$from);
+		//$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/user/view_user', $data);
+	}
+
+	public function cari_viewuser()
+	{
+		$this->load->database();
+
+		$key = $this->input->get('key');
+
+		$search = array('nama_user' => $key,
+						'email' => $key);
+
+		$jumlah_data = $this->mod->jumlah_data_cari('user', $search);
+		$this->load->library('pagination');
+		$config['base_url'] = base_url('index.php/admin2/cari_viewuser');
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 10;
+
+		$from = $this->uri->segment(3);
+
+		$config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['first_link'] = '&laquo; First';
+        $config['first_tag_open'] = '<li class="prev page">';
+        $config['first_tag_close'] = '</li>';
+ 
+        $config['last_link'] = 'Last &raquo;';
+        $config['last_tag_open'] = '<li class="next page">';
+        $config['last_tag_close'] = '</li>';
+ 
+        $config['next_link'] = 'Next &rarr;';
+        $config['next_tag_open'] = '<li class="next page">';
+        $config['next_tag_close'] = '</li>';
+ 
+        $config['prev_link'] = '&larr; Prev';
+        $config['prev_tag_open'] = '<li class="prev page">';
+        $config['prev_tag_close'] = '</li>';
+ 
+        $config['cur_tag_open'] = '<li class="current"><a href="">';
+        $config['cur_tag_close'] = '</a></li>';
+ 
+        $config['num_tag_open'] = '<li class="page">';
+        $config['num_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);		
+		$data['user'] = $this->mod->data_cari('user',$config['per_page'],$from,$search);
+		//$data['barang'] = $this->mod->tampil('barang')->result();
+		$this->load->view('admin/user/view_user', $data);
+	}
+
+	public function delete_user($id)
+	{
+		$where = array('id' => $id );
+		$this->mod->hapusdata('user', $where);
+		redirect('admin2/view_user');
+	}
+
+	public function dtltransaksi($id_transaksi = NULL)
+	{
+		if (!$id_transaksi) {
+			redirect('admin2/viewtransaksi');
+		} else {
+			$where = array('id_transaksi' => $id_transaksi );
+			$data['kom'] = $this->mod->detaildata('transaksi', $where)->result();
+			$this->load->view('admin/transaksi/detail-transaksi', $data);
+		}
 	}
 
 	public function update_ststransaksi()

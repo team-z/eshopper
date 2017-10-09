@@ -283,4 +283,8 @@ class Shopping extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('shopping/index');
 	}
+	public function sukses()
+	{
+		$this->load->view('public/sukses');
+	}
 }

@@ -15,14 +15,14 @@
 						?>
 						<div class="carousel-inner">
 							<div class="item active" style= "padding: 0%;">
-									<img src="<?php echo base_url('assets/uploads/').$data['banner1']; ?>" class="girl img-responsive" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;" alt="" />
+									<img src="<?php echo base_url('./uploads/').$data['banner1']; ?>" class="girl img-responsive" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;" alt="" />
 							</div>
 							<div class="item" style="padding: 0%;">
-									<img src="<?php echo base_url('assets/uploads/').$data['banner2']; ?>" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;"  class="girl img-responsive" alt="" />
+									<img src="<?php echo base_url('./uploads/').$data['banner2']; ?>" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;"  class="girl img-responsive" alt="" />
 							</div>
 							
 							<div class="item" style="padding: 0%;">
-									<img src="<?php echo base_url('assets/uploads/').$data['banner3']; ?>" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;"  class="girl img-responsive" alt="" />
+									<img src="<?php echo base_url('./uploads/').$data['banner3']; ?>" style="width: 1280px;height: 441px;background-size: cover;margin-left: auto;margin-right: auto;"  class="girl img-responsive" alt="" />
 							</div>
 							
 						</div>

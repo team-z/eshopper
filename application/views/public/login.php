@@ -9,8 +9,6 @@
 		<?php include "header-top.php"; ?>
 		<!--/header-middle-->
 	    <?php include "header-middle.php"; ?>
-		<!--/header-bottom-->
-		<?php include "header-bottom.php"; ?>
 	</header>
 	<section style="padding: 5%;"><!--form-->
 		<div class="container">
